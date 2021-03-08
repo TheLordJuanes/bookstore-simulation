@@ -73,4 +73,9 @@ public class BookStoreGUI {
     public void goBack2(ActionEvent event) {
 
     }
+
+	@FXML
+    public void startSimulation(ActionEvent event) {
+
+    }
 }
