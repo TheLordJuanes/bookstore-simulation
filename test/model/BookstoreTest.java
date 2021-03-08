@@ -10,5 +10,4 @@ class BookstoreTest {
 	void test() {
 		fail("Not yet implemented");
 	}
-
 }

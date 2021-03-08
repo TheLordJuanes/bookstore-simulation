@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="171.0" layoutY="29.0" text="Initial parameters">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="162.0" text="Number of shelves:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="163.0" />
+      <Label layoutX="51.0" layoutY="215.0" text="Number of cashiers:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="216.0" />
+      <Label layoutX="64.0" layoutY="112.0" text="Bookstore data:" underline="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="63.0" layoutY="274.0" text="Books catalog:" underline="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="331.0" text="Book ISBN:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="332.0" />
+      <Label layoutX="51.0" layoutY="375.0" text="Number of copies:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="376.0" />
+      <Label layoutX="83.0" layoutY="420.0" text="Book shelf:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="421.0" />
+      <Button alignment="CENTER" layoutX="235.0" layoutY="517.0" mnemonicParsing="false" onAction="#addBook" text="Add book" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="82.0" layoutY="465.0" text="Book price:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="466.0" />
+      <Button alignment="CENTER" layoutX="479.0" layoutY="34.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="30.0" layoutY="18.0" mnemonicParsing="false" onAction="#goBack" prefHeight="61.0" prefWidth="71.0">
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Pictures/returnMenu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="232.0" layoutY="283.0" text="(add every existing book in the bookstore)">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+         <effect>
+            <SepiaTone />
+         </effect>
+      </Label>
+      <Label layoutX="244.0" layoutY="119.0" text="(set the books' shelves and cashiers)">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+         <effect>
+            <SepiaTone />
+         </effect>
+      </Label>
+   </children>
+   <effect>
+      <InnerShadow />
+   </effect>
+</Pane>

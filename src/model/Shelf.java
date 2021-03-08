@@ -5,14 +5,24 @@ public class Shelf {
 	private String identifier;
 	private int bookNum;
 
-	/**
-	 * 
-	 * @param identifier
-	 * @param bookum
-	 */
-	public Shelf(String identifier, int bookum) {
-		// TODO - implement Shelf.Shelf
-		throw new UnsupportedOperationException();
+	public Shelf(String identifier, int bookNum) {
+		this.identifier = identifier;
+		this.bookNum = bookNum;
 	}
 
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+	public int getBookNum() {
+		return bookNum;
+	}
+
+	public void setBookNum(int bookNum) {
+		this.bookNum = bookNum;
+	}
 }

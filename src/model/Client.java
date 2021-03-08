@@ -6,18 +6,32 @@ public class Client {
 	private int time;
 
 	/**
-	 * 
+	 *
 	 * @param id
 	 * @param time
 	 */
 	public Client(String id, int time) {
-		// TODO - implement Client.Client
-		throw new UnsupportedOperationException();
+		this.id = id;
+		this.time = time;
 	}
 
 	public String toString() {
-		// TODO - implement Client.toString
-		throw new UnsupportedOperationException();
+		return "";
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
 }
