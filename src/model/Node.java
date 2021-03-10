@@ -1,13 +1,37 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 public class Node<T> {
 
+	// -----------------------------------------------------------------
+	// Attributes
+    // -----------------------------------------------------------------
+
+	private T value;
+
+	// -----------------------------------------------------------------
+	// Relations
+    // -----------------------------------------------------------------
+
 	private Node<T> nextNode;
 	private Node<T> prevNode;
-	private T t;
 
-	public Node(T t) {
-		this.t = t;
+	// -----------------------------------------------------------------
+	// Methods
+    // -----------------------------------------------------------------
+
+	/**
+	 * Name: Node
+	 * Constructor method of a node.
+	 * @param value - node's value - value = T, value != null
+	*/
+	public Node(T value) {
+		this.value = value;
 	}
 
 	public Node<T> getNextNode() {
@@ -27,10 +51,10 @@ public class Node<T> {
 	}
 
 	public T getValue() {
-		return t;
+		return value;
 	}
 
-	public void setValue(T t) {
-		this.t = t;
+	public void setValue(T value) {
+		this.value = value;
 	}
 }

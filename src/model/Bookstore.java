@@ -1,7 +1,21 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 public class Bookstore {
 
+	// -----------------------------------------------------------------
+	// Methods
+    // -----------------------------------------------------------------
+
+	/**
+	 * Name: Bookstore
+	 * Constructor method of a bookstore.
+	*/
 	public Bookstore() {
 	}
 

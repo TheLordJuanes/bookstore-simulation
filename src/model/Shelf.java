@@ -1,10 +1,30 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 public class Shelf {
 
+	// -----------------------------------------------------------------
+	// Attributes
+    // -----------------------------------------------------------------
+
 	private String identifier;
 	private int bookNum;
 
+	// -----------------------------------------------------------------
+	// Methods
+    // -----------------------------------------------------------------
+
+	/**
+	 * Name: Shelf
+	 * Constructor method of a shelf.
+	 * @param identifier - shelf's identifier - identifier = String, identifier != null, identifier != ""
+	 * @param bookNum - number of book in a shelf - bookNum = int, bookNum != null, bookNum != 0
+	*/
 	public Shelf(String identifier, int bookNum) {
 		this.identifier = identifier;
 		this.bookNum = bookNum;

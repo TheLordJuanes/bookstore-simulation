@@ -1,12 +1,51 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 public class MyStack<T> implements MyStackInterface<T> {
 
-    private Node<T> top;
+    // -----------------------------------------------------------------
+	// Attributes
+    // -----------------------------------------------------------------
+
     private int length;
 
+    // -----------------------------------------------------------------
+	// Relations
+    // -----------------------------------------------------------------
+
+    private Node<T> top;
+
+    // -----------------------------------------------------------------
+	// Methods
+    // -----------------------------------------------------------------
+
+    /**
+	 * Name: MyStack
+	 * Constructor method of a stack.
+	*/
     public MyStack() {
         length = 0;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public Node<T> getTop() {
+        return top;
+    }
+
+    public void setTop(Node<T> top) {
+        this.top = top;
     }
 
     @Override
@@ -20,8 +59,8 @@ public class MyStack<T> implements MyStackInterface<T> {
     }
 
     @Override
-    public void push(T t) {
-        Node<T> newNode = new Node<>(t);
+    public void push(T value) {
+        Node<T> newNode = new Node<T>(value);
         if (!isEmpty()) {
             top.setNextNode(newNode);
             newNode.setPrevNode(top);

@@ -1,20 +1,63 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 import exceptions.MyQueueException;
 
 public class MyQueue<T> implements MyQueueInterface<T> {
 
-    private Node<T> front;
-    private Node<T> back;
+    // -----------------------------------------------------------------
+	// Attributes
+    // -----------------------------------------------------------------
+
     private int length;
 
+    // -----------------------------------------------------------------
+	// Relations
+    // -----------------------------------------------------------------
+
+    private Node<T> front;
+    private Node<T> back;
+
+    // -----------------------------------------------------------------
+	// Methods
+    // -----------------------------------------------------------------
+
+    /**
+	 * Name: MyQueue
+	 * Constructor method of a queue.
+	*/
     public MyQueue() {
         length = 0;
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setFront(Node<T> front) {
+        this.front = front;
+    }
+
+    public Node<T> getBack() {
+        return back;
+    }
+
+    public void setBack(Node<T> back) {
+        this.back = back;
+    }
+
     @Override
-    public void enqueue(T t) {
-        Node<T> newNode = new Node<T>(t);
+    public void enqueue(T value) {
+        Node<T> newNode = new Node<T>(value);
         if (isEmpty()) {
             front = newNode;
             back = newNode;
@@ -44,7 +87,7 @@ public class MyQueue<T> implements MyQueueInterface<T> {
         if (isEmpty())
             throw new MyQueueException("There is nothing in the queue");
         else {
-            T t = front.getValue();
+            T value = front.getValue();
             if (getLength() == 1) {
                 front = null;
                 back = null;
@@ -53,12 +96,7 @@ public class MyQueue<T> implements MyQueueInterface<T> {
                 front = front.getPrevNode();
             }
             length--;
-            return t;
+            return value;
         }
-    }
-
-    @Override
-    public int getLength() {
-        return length;
     }
 }
