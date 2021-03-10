@@ -2,7 +2,7 @@ package model;
 
 public class Shelf<K extends Number,V> extends MyHashTable<K,V>{
 	
-	private String identifier;
+	private final String identifier;
 	private int bookNum; //Al fin vamos a contabilizar la cantidad de libros que hay?
 
 	public Shelf(String identifier, int bookNum) {
@@ -13,10 +13,6 @@ public class Shelf<K extends Number,V> extends MyHashTable<K,V>{
 	
 	public String getIdentifier() {
 		return identifier;
-	}
-
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
 	}
 
 	public int getBookNum() {

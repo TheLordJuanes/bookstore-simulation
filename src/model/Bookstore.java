@@ -6,7 +6,11 @@
 */
 package model;
 
+import java.util.ArrayList;
+
 public class Bookstore {
+	
+	private ArrayList<Shelf<Integer, Double>> shelves;
 
 	// -----------------------------------------------------------------
 	// Methods
@@ -17,7 +21,9 @@ public class Bookstore {
 	 * Constructor method of a bookstore.
 	*/
 	public Bookstore() {
+		shelves=new ArrayList<>();
 	}
+	
 
 	public void orderClientsBooks() {
 	}
