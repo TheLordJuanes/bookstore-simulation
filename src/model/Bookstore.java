@@ -9,21 +9,29 @@ package model;
 import java.util.ArrayList;
 
 public class Bookstore {
-	
+
+	// -----------------------------------------------------------------
+	// Relations
+	// -----------------------------------------------------------------
+
 	private ArrayList<Shelf<Integer, Double>> shelves;
 
 	// -----------------------------------------------------------------
 	// Methods
-    // -----------------------------------------------------------------
+	// -----------------------------------------------------------------
 
 	/**
 	 * Name: Bookstore
 	 * Constructor method of a bookstore.
 	*/
 	public Bookstore() {
-		shelves=new ArrayList<>();
+		shelves = new ArrayList<>();
+		shelves.add(null);
 	}
-	
+
+	public void addBook(String bIsbn, String numberOfCopies, char bookShelf, double bookPrice) {
+
+	}
 
 	public void orderClientsBooks() {
 	}

@@ -7,11 +7,15 @@
 package ui;
 
 import javafx.stage.Stage;
+import model.Bookstore;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 
@@ -21,34 +25,36 @@ public class BookStoreGUI {
 	// Attributes
     // -----------------------------------------------------------------
 
+    @FXML
+    private TextField txtNumberOfShelves;
+
+    @FXML
+    private TextField txtNumberOfCashiers;
+
+    @FXML
+    private TextField txtISBN;
+
+    @FXML
+    private TextField txtNumberOfCopies;
+
+    @FXML
+    private TextField txtBookShelf;
+
+    @FXML
+    private TextField txtBookPrice;
+
 	@FXML
-    private TextField numberOfShelves;
+    private TextField txtClientIdEnter;
 
     @FXML
-    private TextField numberOfCashiers;
+    private TextField cbClientIdList;
 
     @FXML
-    private TextField isbn;
-
-    @FXML
-    private TextField numberOfCopies;
-
-    @FXML
-    private TextField bookShelf;
-
-    @FXML
-    private TextField bookPrice;
-
-	@FXML
-    private TextField clientIdEnter;
-
-    @FXML
-    private TextField clientIdList;
-
-    @FXML
-    private TextField isbnList;
+    private TextField txtISBNList;
 
     private Stage primaryStage;
+
+    private Bookstore bookstore;
 
     // -----------------------------------------------------------------
 	// Methods
@@ -61,6 +67,31 @@ public class BookStoreGUI {
     */
     public BookStoreGUI(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+        bookstore = new Bookstore();
+	}
+
+	public void showErrorAlert(String title, String header, String content) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
+	}
+
+	public void showWarningAlert(String title, String header, String content) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
+	}
+
+	public void showInformationAlert(String title, String header, String content) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
 	}
 
     /**
@@ -89,15 +120,21 @@ public class BookStoreGUI {
     */
     @FXML
     public void goBack1(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent startSimulation = fxmlLoader.load();
-            primaryStage.setTitle("Initial parameters");
-            primaryStage.setScene(new Scene(startSimulation));
-            primaryStage.show();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Are you sure?");
+		alert.setHeaderText(null);
+		alert.setContentText("If you go back, the book catalog will be lost.");
+        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
+            fxmlLoader.setController(this);
+            try {
+                Parent startSimulation = fxmlLoader.load();
+                primaryStage.setTitle("Initial parameters");
+                primaryStage.setScene(new Scene(startSimulation));
+                primaryStage.show();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 
@@ -108,7 +145,15 @@ public class BookStoreGUI {
     */
     @FXML
     public void addBook(ActionEvent event) {
-
+        String bIsbn = txtISBN.getText();
+        String numberOfCopies = txtNumberOfCopies.getText();
+        char bookShelf = txtBookShelf.getText().charAt(0);
+        double bookPrice = Double.parseDouble(txtBookPrice.getText());
+        bookstore.addBook(bIsbn,numberOfCopies,bookShelf,bookPrice);
+        txtISBN.setText("");
+        txtBookShelf.setText("");
+        txtBookPrice.setText("");
+        txtNumberOfCopies.setText("");
     }
 
     /**
@@ -137,15 +182,21 @@ public class BookStoreGUI {
     */
     @FXML
     public void goBack2(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("initial-parameters1.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent initialParameters1 = fxmlLoader.load();
-            primaryStage.setTitle("Initial parameters");
-            primaryStage.setScene(new Scene(initialParameters1));
-            primaryStage.show();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Are you sure?");
+		alert.setHeaderText(null);
+		alert.setContentText("If you go back, the book catalog will be lost.");
+        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("initial-parameters1.fxml"));
+            fxmlLoader.setController(this);
+            try {
+                Parent initialParameters1 = fxmlLoader.load();
+                primaryStage.setTitle("Initial parameters");
+                primaryStage.setScene(new Scene(initialParameters1));
+                primaryStage.show();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 

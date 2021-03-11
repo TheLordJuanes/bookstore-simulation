@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -49,7 +50,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="clientIdEnter" layoutX="233.0" layoutY="181.0" />
+      <TextField fx:id="txtClientIdEnter" layoutX="233.0" layoutY="181.0" />
       <Button alignment="CENTER" layoutX="432.0" layoutY="177.0" mnemonicParsing="false" onAction="#addClient" text="Add client">
          <font>
             <Font size="18.0" />
@@ -73,18 +74,18 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="clientIdList" layoutX="233.0" layoutY="289.0" />
       <Label layoutX="74.0" layoutY="338.0" text="Book ISBN:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="isbnList" layoutX="233.0" layoutY="339.0" />
+      <TextField fx:id="txtISBNList" layoutX="233.0" layoutY="339.0" />
       <Button alignment="CENTER" layoutX="432.0" layoutY="306.0" mnemonicParsing="false" onAction="#appendBook" text="Append book">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <ChoiceBox fx:id="cbCientIdList" layoutX="238.0" layoutY="289.0" prefWidth="150.0" />
    </children>
    <effect>
       <InnerShadow />

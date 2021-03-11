@@ -22,13 +22,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberOfShelves" layoutX="265.0" layoutY="163.0" />
+      <TextField fx:id="txtNumberOfShelves" layoutX="265.0" layoutY="163.0" />
       <Label layoutX="51.0" layoutY="215.0" text="Number of cashiers:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberOfCashiers" layoutX="265.0" layoutY="216.0" />
+      <TextField fx:id="txtNumberOfCashiers" layoutX="265.0" layoutY="216.0" />
       <Label layoutX="64.0" layoutY="112.0" text="Bookstore data:" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -44,19 +44,19 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="isbn" layoutX="265.0" layoutY="332.0" />
+      <TextField fx:id="txtISBN" layoutX="265.0" layoutY="332.0" />
       <Label layoutX="51.0" layoutY="375.0" text="Number of copies:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberOfCopies" layoutX="265.0" layoutY="376.0" />
+      <TextField fx:id="txtNumberOfCopies" layoutX="265.0" layoutY="376.0" />
       <Label layoutX="83.0" layoutY="420.0" text="Book shelf:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="bookShelf" layoutX="265.0" layoutY="421.0" />
+      <TextField fx:id="txtBookShelf" layoutX="265.0" layoutY="421.0" />
       <Button alignment="CENTER" layoutX="235.0" layoutY="517.0" mnemonicParsing="false" onAction="#addBook" text="Add book" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
@@ -67,7 +67,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="bookPrice" layoutX="265.0" layoutY="466.0" />
+      <TextField fx:id="txtBookPrice" layoutX="265.0" layoutY="466.0" />
       <Button alignment="CENTER" layoutX="479.0" layoutY="34.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />

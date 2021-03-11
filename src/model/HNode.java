@@ -1,16 +1,34 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 21th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+*/
 package model;
 
 public class HNode<K, V> {
-	
+
+	// -----------------------------------------------------------------
+	// Attributes
+	// -----------------------------------------------------------------
+
 	private V value;
 	private K key;
-	
-	private HNode<K,V> next;
-	private HNode<K,V> prev;
-	
+
+	// -----------------------------------------------------------------
+	// Relations
+	// -----------------------------------------------------------------
+
+	private HNode<K, V> next;
+	private HNode<K, V> prev;
+
+	// -----------------------------------------------------------------
+	// Methods
+	// -----------------------------------------------------------------
+
 	public HNode(K key, V value) {
-		this.value=value;
-		this.key=key;
+		this.value = value;
+		this.key = key;
 	}
 
 	public V getValue() {
@@ -20,7 +38,7 @@ public class HNode<K, V> {
 	public void setValue(V value) {
 		this.value = value;
 	}
-	
+
 	public K getKey() {
 		return key;
 	}
@@ -40,5 +58,4 @@ public class HNode<K, V> {
 	public void setPrev(HNode<K, V> prev) {
 		this.prev = prev;
 	}
-
 }
