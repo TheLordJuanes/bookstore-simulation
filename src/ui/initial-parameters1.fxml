@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -10,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="171.0" layoutY="29.0" text="Initial parameters">
+      <Label layoutX="177.0" layoutY="29.0" text="Initial parameters">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -22,53 +23,52 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNumberOfShelves" layoutX="265.0" layoutY="163.0" />
+      <TextField fx:id="txtNumberOfShelves" layoutX="289.0" layoutY="164.0" />
       <Label layoutX="51.0" layoutY="215.0" text="Number of cashiers:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNumberOfCashiers" layoutX="265.0" layoutY="216.0" />
-      <Label layoutX="64.0" layoutY="112.0" text="Bookstore data:" underline="true">
+      <TextField fx:id="txtNumberOfCashiers" layoutX="289.0" layoutY="217.0" />
+      <Label layoutX="51.0" layoutY="112.0" text="Bookstore data:" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="274.0" text="Books catalog:" underline="true">
+      <Label layoutX="51.0" layoutY="274.0" text="Books catalog:" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="82.0" layoutY="331.0" text="Book ISBN:">
+      <Label layoutX="51.0" layoutY="331.0" text="Book ISBN:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtISBN" layoutX="265.0" layoutY="332.0" />
+      <TextField fx:id="txtISBN" layoutX="289.0" layoutY="332.0" />
       <Label layoutX="51.0" layoutY="375.0" text="Number of copies:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNumberOfCopies" layoutX="265.0" layoutY="376.0" />
-      <Label layoutX="83.0" layoutY="420.0" text="Book shelf:">
+      <TextField fx:id="txtNumberOfCopies" layoutX="289.0" layoutY="376.0" />
+      <Label layoutX="51.0" layoutY="420.0" text="Book shelf:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookShelf" layoutX="265.0" layoutY="421.0" />
-      <Button alignment="CENTER" layoutX="235.0" layoutY="517.0" mnemonicParsing="false" onAction="#addBook" text="Add book" textAlignment="CENTER">
+      <Button fx:id="btnAddBook" alignment="CENTER" layoutX="487.0" layoutY="394.0" mnemonicParsing="false" onAction="#addBook" prefWidth="127.0" text="Add book" textAlignment="CENTER">
          <font>
-            <Font size="24.0" />
+            <Font size="19.0" />
          </font>
       </Button>
-      <Label layoutX="82.0" layoutY="465.0" text="Book price:">
+      <Label layoutX="51.0" layoutY="465.0" text="Book price:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookPrice" layoutX="265.0" layoutY="466.0" />
-      <Button alignment="CENTER" layoutX="479.0" layoutY="34.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
+      <TextField fx:id="txtBookPrice" layoutX="289.0" layoutY="466.0" />
+      <Button alignment="CENTER" layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
@@ -90,7 +90,7 @@
             <SepiaTone />
          </effect>
       </Label>
-      <Label layoutX="244.0" layoutY="119.0" text="(set the books' shelves and cashiers)">
+      <Label layoutX="258.0" layoutY="120.0" text="(set the books' shelves and cashiers)">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
@@ -98,6 +98,12 @@
             <SepiaTone />
          </effect>
       </Label>
+      <Button alignment="CENTER" layoutX="487.0" layoutY="180.0" mnemonicParsing="false" onAction="#addData" prefWidth="127.0" text="Add data" textAlignment="CENTER">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="cbBookShelf" layoutX="289.0" layoutY="422.0" prefWidth="186.0" />
    </children>
    <effect>
       <InnerShadow />

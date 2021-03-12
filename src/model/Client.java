@@ -29,6 +29,11 @@ public class Client {
 		this.id = id;
 		this.time = time;
 	}
+	
+	//Discutir
+	public Client(String id) {
+		this.id = id;
+	}
 
 	public String toString() {
 		return "";

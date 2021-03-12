@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="233.0" layoutY="129.0" text="(add every client  that will enter the bookstore)">
+      <Label layoutX="258.0" layoutY="129.0" text="(add every client  that will enter the bookstore)">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
@@ -45,18 +45,18 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="85.0" layoutY="180.0" text="Client ID:">
+      <Label layoutX="42.0" layoutY="180.0" text="Client ID:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtClientIdEnter" layoutX="233.0" layoutY="181.0" />
+      <TextField fx:id="txtClientIdEnter" layoutX="181.0" layoutY="181.0" />
       <Button alignment="CENTER" layoutX="432.0" layoutY="177.0" mnemonicParsing="false" onAction="#addClient" text="Add client">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="233.0" layoutY="246.0" text="(fill the books' list from every client)">
+      <Label layoutX="258.0" layoutY="246.0" text="(fill the books' list from every client)">
          <font>
             <Font name="System Italic" size="13.0" />
          </font>
@@ -64,28 +64,28 @@
             <SepiaTone />
          </effect>
       </Label>
-      <Label layoutX="43.0" layoutY="240.0" text="Clients books list:" underline="true">
+      <Label layoutX="42.0" layoutY="240.0" text="Clients books list:" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="85.0" layoutY="288.0" text="Client ID:">
+      <Label layoutX="42.0" layoutY="288.0" text="Client ID:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="74.0" layoutY="338.0" text="Book ISBN:">
+      <Label layoutX="42.0" layoutY="338.0" text="Book ISBN:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtISBNList" layoutX="233.0" layoutY="339.0" />
-      <Button alignment="CENTER" layoutX="432.0" layoutY="306.0" mnemonicParsing="false" onAction="#appendBook" text="Append book">
+      <TextField fx:id="txtISBNList2" layoutX="181.0" layoutY="339.0" />
+      <Button fx:id="btAppendBook" alignment="CENTER" layoutX="432.0" layoutY="306.0" mnemonicParsing="false" onAction="#appendBook" text="Append book">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="cbCientIdList" layoutX="238.0" layoutY="289.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="cbCientIdList" layoutX="181.0" layoutY="289.0" prefWidth="186.0" />
    </children>
    <effect>
       <InnerShadow />
