@@ -13,6 +13,7 @@ public class Book {
     // -----------------------------------------------------------------
 
 	private String isbn;
+	//private String shelf;
 	private int copies;
 	private double price;
 
@@ -29,6 +30,7 @@ public class Book {
 	*/
 	public Book(String isbn, int copies, double price) {
 		this.isbn = isbn;
+		//this.shelf = shelf;
 		this.copies = copies;
 		this.price = price;
 	}

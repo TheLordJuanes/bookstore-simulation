@@ -4,7 +4,7 @@
  * @Date: March, 21th 2021
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
 */
-package model;
+package dataStructures;
 
 public class HNode<K, V> {
 

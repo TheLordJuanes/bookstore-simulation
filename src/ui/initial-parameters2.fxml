@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="258.0" layoutY="129.0" text="(add every client  that will enter the bookstore)">
          <font>
@@ -85,7 +85,13 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="cbCientIdList" layoutX="181.0" layoutY="289.0" prefWidth="186.0" />
+      <ChoiceBox fx:id="cbClientIdList" layoutX="181.0" layoutY="289.0" prefWidth="186.0" />
+      <Label layoutX="137.0" layoutY="410.0" text="Sorting with:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cbSortingAlgorithm" layoutX="277.0" layoutY="411.0" prefWidth="186.0" />
    </children>
    <effect>
       <InnerShadow />

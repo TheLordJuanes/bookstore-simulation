@@ -18,9 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -44,34 +42,31 @@ public class BookStoreGUI {
     private TextField txtNumberOfCopies;
 
     @FXML
-    private TextField txtBookShelf;
-
-    @FXML
     private TextField txtBookPrice;
 
-	@FXML
+    @FXML
     private TextField txtClientIdEnter;
 
     @FXML
-    private TextField cbClientIdList;
+    private TextField txtISBNList;
 
     @FXML
-    private TextField txtISBNList;
-    
-    @FXML
     private ChoiceBox<String> cbBookShelf;
-    
+
     @FXML
-    private ChoiceBox<String> cbCientIdList;
-    
+    private ChoiceBox<String> cbClientIdList;
+
     @FXML
     private Button btnAddBook;
-    
+
     @FXML
     private Button btAppendBook;
-    
+
     @FXML
     private TextField txtISBNList2;
+
+    @FXML
+    private ChoiceBox<String> cbSortingAlgorithm;
 
     private Stage primaryStage;
 
@@ -89,7 +84,6 @@ public class BookStoreGUI {
     public BookStoreGUI(Stage primaryStage) {
 		this.primaryStage = primaryStage;
         bookstore = new Bookstore();
-        
 	}
 
 	public void showErrorAlert(String title, String header, String content) {
@@ -132,41 +126,36 @@ public class BookStoreGUI {
             txtNumberOfShelves.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,20}?")) {
+                    if (!newValue.matches("\\d{0,20}?"))
                     	txtNumberOfShelves.setText(oldValue);
-                    }
                 }
             });
             txtNumberOfCashiers.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,20}?")) {
+                    if (!newValue.matches("\\d{0,20}?"))
                     	txtNumberOfCashiers.setText(oldValue);
-                    }
                 }
             });
             txtISBN.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,13}?")) {
+                    if (!newValue.matches("\\d{0,13}?"))
                     	txtISBN.setText(oldValue);
-                    }
                 }
             });
             txtNumberOfCopies.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,3}?")) {
+                    if (!newValue.matches("\\d{0,3}?"))
                     	txtNumberOfCopies.setText(oldValue);
-                    }
                 }
             });
             txtBookPrice.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,3}?")) {
+                    if (!newValue.matches("\\d{0,3}?"))
                     	txtBookPrice.setText(oldValue);
-                    }
                 }
             });
             if(bookstore.getNumberOfCashiers()==0 || bookstore.getNumberOfShelves()==0) {
@@ -177,10 +166,8 @@ public class BookStoreGUI {
             	btnAddBook.setDisable(true);
             }else {
             	String[] identifiers = bookstore.getIdentifiers();
-            	for(int i=0; i<identifiers.length; i++) {
-            		cbBookShelf.getItems().add(identifiers[i]);	
-            	}
-            	
+            	for(int i=0; i<identifiers.length; i++)
+            		cbBookShelf.getItems().add(identifiers[i]);
             }
             primaryStage.show();
         } catch (IOException ioe) {
@@ -221,12 +208,11 @@ public class BookStoreGUI {
     @FXML
     public void addBook(ActionEvent event) {
         String bIsbn = txtISBN.getText();
-        String numberOfCopies = txtNumberOfCopies.getText();
-        char bookShelf = txtBookShelf.getText().charAt(0);
+        int numberOfCopies = Integer.parseInt(txtNumberOfCopies.getText());
+        String bookShelf = cbBookShelf.getValue();
         double bookPrice = Double.parseDouble(txtBookPrice.getText());
         bookstore.addBook(bIsbn,numberOfCopies,bookShelf,bookPrice);
         txtISBN.setText("");
-        txtBookShelf.setText("");
         txtBookPrice.setText("");
         txtNumberOfCopies.setText("");
     }
@@ -247,30 +233,30 @@ public class BookStoreGUI {
             txtClientIdEnter.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,20}?")) {
+                    if (!newValue.matches("\\d{0,20}?"))
                     	txtClientIdEnter.setText(oldValue);
-                    }
                 }
             });
             txtISBNList2.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,13}?")) {
+                    if (!newValue.matches("\\d{0,13}?"))
                     	txtISBNList2.setText(oldValue);
-                    }
                 }
             });
-            if(bookstore.getNumberOfClients()==0) {
-            	cbCientIdList.setDisable(true);
-            	txtISBNList2.setDisable(true);
-            	btAppendBook.setDisable(true);
-            }else {
-            	String[] ids = bookstore.getIds();
-            	for(int i=0; i<ids.length; i++) {
-            		cbCientIdList.getItems().add(ids[i]);	
-            	}	
+            if (bookstore.getNumberOfClients() == 0) {
+                cbClientIdList.setDisable(true);
+                txtISBNList2.setDisable(true);
+                btAppendBook.setDisable(true);
+            } else {
+                String[] ids = bookstore.getIds();
+                for (int i = 0; i < ids.length; i++)
+                    cbClientIdList.getItems().add(ids[i]);
             }
             primaryStage.show();
+            cbSortingAlgorithm.getItems().add("Bubble sort");
+            cbSortingAlgorithm.getItems().add("Counting sort");
+            cbSortingAlgorithm.getItems().add("Radix sort");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -287,18 +273,8 @@ public class BookStoreGUI {
 		alert.setTitle("Are you sure?");
 		alert.setHeaderText(null);
 		alert.setContentText("If you go back, the book catalog will be lost.");
-        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("initial-parameters1.fxml"));
-            fxmlLoader.setController(this);
-            try {
-                Parent initialParameters1 = fxmlLoader.load();
-                primaryStage.setTitle("Initial parameters");
-                primaryStage.setScene(new Scene(initialParameters1));
-                primaryStage.show();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        }
+        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent())
+            startSimulation(event);
     }
 
     /**
@@ -308,15 +284,15 @@ public class BookStoreGUI {
     */
     @FXML
     public void addClient(ActionEvent event) {
-    	String clientId=txtClientIdEnter.getText();
-    	if(clientId.equals("")) {
-    		showErrorAlert("The text field is empty", null, "Please enter the client id");
-    	}else {
-    		if(bookstore.addClient(clientId)) {
-    			showWarningAlert("The client was not added", null, "There is already a client with the id: "+clientId);
-    		}
-    		goForward(event);
-    	}
+        String clientId = txtClientIdEnter.getText();
+        if (clientId.equals(""))
+            showErrorAlert("The text field is empty", null, "Please enter the client id");
+        else {
+            if (bookstore.addClient(clientId)) {
+                showWarningAlert("The client was not added", null, "There is already a client with the id: " + clientId);
+            }
+            goForward(event);
+        }
     }
 
     /**
@@ -338,21 +314,19 @@ public class BookStoreGUI {
     public void giveResult(ActionEvent event) {
 
     }
-    
+
     @FXML
     void addData(ActionEvent event) {
     	String shelves = txtNumberOfShelves.getText();
-    	String cashiers = txtNumberOfCashiers.getText();
-    	if(shelves.equals("") || cashiers.equals("")) {
-    		showErrorAlert("At least one text field is empty", null, "Please fill both text fields (number of shelves, number of cashiers)");
-    	}else {
-    		int nShelves = Integer.valueOf(shelves);
-    		int nCashiers = Integer.valueOf(cashiers);
-    		bookstore.setNumberOfCashiers(nCashiers);
-    		bookstore.createShelves(nShelves);
-    		startSimulation(event);
-    	}
-    	
+        String cashiers = txtNumberOfCashiers.getText();
+        if (shelves.equals("") || cashiers.equals(""))
+            showErrorAlert("At least one text field is empty", null, "Please fill both text fields (number of shelves, number of cashiers)");
+        else {
+            int nShelves = Integer.valueOf(shelves);
+            int nCashiers = Integer.valueOf(cashiers);
+            bookstore.setNumberOfCashiers(nCashiers);
+            bookstore.createShelves(nShelves);
+            startSimulation(event);
+        }
     }
-  
 }

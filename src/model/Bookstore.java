@@ -29,23 +29,20 @@ public class Bookstore {
 	public Bookstore() {
 		shelves = new ArrayList<>();
 		clients = new ArrayList<>();
-		//shelves.add(null); discutir
 	}
 
-	public void addBook(String bIsbn, String numberOfCopies, char bookShelf, double bookPrice) {
-
+	public void addBook(String bIsbn, int numberOfCopies, String bookShelf, double bookPrice) {
+		Book newBook = new Book (bIsbn ,numberOfCopies, bookPrice);
 	}
-	
+
 	public boolean addClient(String id) {
 		boolean exist = false;
-		for(int i=0; i<clients.size() && !exist; i++) {
-			if(clients.get(i).getId().equals(id)) {
-				exist=true;
-			}
+		for (int i = 0; i < clients.size() && !exist; i++) {
+			if (clients.get(i).getId().equals(id))
+				exist = true;
 		}
-		if(!exist) {
+		if (!exist)
 			clients.add(new Client(id));
-		}
 		return exist;
 	}
 
