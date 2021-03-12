@@ -34,7 +34,7 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	 */
 	@SuppressWarnings("unchecked")
 	public MyHashTable() {
-		// nodes= new HNode<k,v>[AAR_SIZE]();
+		nodes= (HNode<K,V>[])new HNode[ARRAY_SIZE];
 		//nodes=(HNode<K,V>[]) new Object[ARRAY_SIZE]; //To discuss
 		/**
 		 * 	nodes = new ArrayList<>();
