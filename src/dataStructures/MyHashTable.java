@@ -16,12 +16,6 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	public static final double ARBITRARY_NUMBER = (Math.sqrt(5) - 1.0) / 2.0;
 
 	// -----------------------------------------------------------------
-	// Constants
-	// -----------------------------------------------------------------
-
-	private final String identifier;
-
-	// -----------------------------------------------------------------
 	// Relations
 	// -----------------------------------------------------------------
 
@@ -39,18 +33,13 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	 * @param bookNum - number of book in a shelf - bookNum = int, bookNum != null, bookNum != 0
 	 */
 	@SuppressWarnings("unchecked")
-	public MyHashTable(String identifier) {
+	public MyHashTable() {
 		nodes = (HNode<K, V>[]) new HNode[ARRAY_SIZE];
-		this.identifier = identifier;
 		// nodes=(HNode<K,V>[]) new Object[ARRAY_SIZE]; //To discuss
 		/**
 		 * nodes = new ArrayList<>(); for (int i = 0; i < ARRAY_SIZE; i++)
 		 * nodes.add(null);
 		 */
-	}
-
-	public String getIdentifier() {
-		return identifier;
 	}
 
 	@Override

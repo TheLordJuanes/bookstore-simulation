@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import dataStructures.MyStack;
-import dataStructures.MyHashTable;
 import dataStructures.MyQueue;
 
 public class Bookstore {
@@ -26,7 +25,7 @@ public class Bookstore {
 	// Relations
 	// -----------------------------------------------------------------
 
-	private ArrayList<MyHashTable<Integer, Book>> shelves;
+	private ArrayList<Shelf<Integer, Book>> shelves;
 	private ArrayList<Client> clients;
 
 	// -----------------------------------------------------------------
@@ -242,7 +241,7 @@ public class Bookstore {
 				prevLetters += prevLetter;
 			for (int i = 65; i < 91 && numberOfS > 0; i++) {
 				char letter = (char) i;
-				shelves.add(new MyHashTable<Integer, Book>(prevLetters + letter));
+				shelves.add(new Shelf<Integer, Book>(prevLetters + letter));
 				--numberOfS;
 			}
 			if (index == 90) {

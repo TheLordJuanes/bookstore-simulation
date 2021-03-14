@@ -256,8 +256,8 @@ public class BookStoreGUI {
             }
             primaryStage.show();
             cbSortingAlgorithm.getItems().add("Bubble sort");
-            cbSortingAlgorithm.getItems().add("Counting sort");
-            cbSortingAlgorithm.getItems().add("Radix sort");
+            cbSortingAlgorithm.getItems().add("Merge sort");
+            cbSortingAlgorithm.getItems().add("Heap sort");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
