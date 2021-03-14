@@ -49,6 +49,17 @@ public class MyStack<T> implements MyStackInterface<T> {
     }
 
     @Override
+    public String toString(){
+        String info="";
+        Node<T> temp = top;
+        for(int i=length; i>0; i--){
+            info+=temp.getValue()+info;
+            temp = temp.getPrevNode();
+        }
+        return info;
+    }
+
+    @Override
     public T pop() {
         Node<T> temp = top.getPrevNode();
         Node<T> nodeDeleted = top;

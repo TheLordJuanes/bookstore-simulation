@@ -6,9 +6,11 @@
 */
 package dataStructures;
 
-public interface MyHashTableInterface<K extends Number,V> {
+public interface MyHashTableInterface<K extends Number, V> {
 
 	public void insert(K key, V value);
-	public HNode<K,V> search(K key); //To discuss
+
+	public V search(K key);
+
 	public void delete(K key);
 }

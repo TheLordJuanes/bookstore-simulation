@@ -6,33 +6,41 @@
 */
 package dataStructures;
 
+import java.util.ArrayList;
+
 import exceptions.MyQueueException;
 
 public class MyQueue<T> implements MyQueueInterface<T> {
 
     // -----------------------------------------------------------------
-	// Attributes
+    // Attributes
     // -----------------------------------------------------------------
 
     private int length;
 
     // -----------------------------------------------------------------
-	// Relations
+    // Relations
     // -----------------------------------------------------------------
 
     private Node<T> front;
     private Node<T> back;
 
     // -----------------------------------------------------------------
-	// Methods
+    // Methods
     // -----------------------------------------------------------------
 
     /**
-	 * Name: MyQueue
-	 * Constructor method of a queue.
-	*/
+     * Name: MyQueue
+     * Constructor method of a queue.
+    */
     public MyQueue() {
         length = 0;
+    }
+
+    public MyQueue(ArrayList<T> list) {
+        length = 0;
+        for (int i = list.size() - 1; i >= 0; i--)
+            this.enqueue(list.get(i));
     }
 
     public int getLength() {
@@ -53,6 +61,17 @@ public class MyQueue<T> implements MyQueueInterface<T> {
 
     public void setBack(Node<T> back) {
         this.back = back;
+    }
+
+    @Override
+    public String toString() {
+        String info = "";
+        Node<T> temp = front;
+        for (int i = length; i > 0; i--) {
+            info += temp.getValue() + info;
+            temp = temp.getPrevNode();
+        }
+        return info;
     }
 
     @Override

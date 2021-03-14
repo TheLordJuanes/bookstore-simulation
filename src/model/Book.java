@@ -12,8 +12,8 @@ public class Book {
 	// Attributes
     // -----------------------------------------------------------------
 
-	private String isbn;
-	//private String shelf;
+	private int isbn;
+	private String shelf;
 	private int copies;
 	private double price;
 
@@ -28,19 +28,26 @@ public class Book {
 	 * @param copies - book copies - copies = int, copies != null
 	 * @param price - book price - price = double, price != null
 	*/
-	public Book(String isbn, int copies, double price) {
+	public Book(int isbn, int copies, double price,String shelf) {
 		this.isbn = isbn;
-		//this.shelf = shelf;
+		this.shelf = shelf;
 		this.copies = copies;
 		this.price = price;
 	}
 
-	public String getIsbn() {
+	public int getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public void setIsbn(int isbn) {
 		this.isbn = isbn;
+	}
+	public String getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(String shelf) {
+		this.shelf= shelf;
 	}
 
 	public int getCopies() {

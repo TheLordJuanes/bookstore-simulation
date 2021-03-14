@@ -207,11 +207,12 @@ public class BookStoreGUI {
     */
     @FXML
     public void addBook(ActionEvent event) {
-        String bIsbn = txtISBN.getText();
+        int bIsbn = Integer.parseInt(txtISBN.getText());
         int numberOfCopies = Integer.parseInt(txtNumberOfCopies.getText());
         String bookShelf = cbBookShelf.getValue();
         double bookPrice = Double.parseDouble(txtBookPrice.getText());
-        bookstore.addBook(bIsbn,numberOfCopies,bookShelf,bookPrice);
+        if(bookstore.addBook(bIsbn,numberOfCopies,bookShelf,bookPrice))
+            showErrorAlert("Error adding book",null,"A book with that ISBN has already been added to the library");
         txtISBN.setText("");
         txtBookPrice.setText("");
         txtNumberOfCopies.setText("");
@@ -312,11 +313,16 @@ public class BookStoreGUI {
     */
     @FXML
     public void giveResult(ActionEvent event) {
-
+        if (cbSortingAlgorithm.getValue().equals("Bubble sort"))
+            bookstore.orderClientsBooks('B');
+        else if (cbSortingAlgorithm.getValue().equals("Counting sort"))
+            bookstore.orderClientsBooks('C');
+        else
+            bookstore.orderClientsBooks('R');
     }
 
     @FXML
-    void addData(ActionEvent event) {
+    public void addData(ActionEvent event) {
     	String shelves = txtNumberOfShelves.getText();
         String cashiers = txtNumberOfCashiers.getText();
         if (shelves.equals("") || cashiers.equals(""))

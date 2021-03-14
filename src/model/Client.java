@@ -6,6 +6,9 @@
 */
 package model;
 
+import java.util.ArrayList;
+import dataStructures.MyStack;
+
 public class Client {
 
 	// -----------------------------------------------------------------
@@ -14,6 +17,13 @@ public class Client {
 
 	private String id;
 	private int time;
+
+	// -----------------------------------------------------------------
+	// Relations
+    // -----------------------------------------------------------------
+
+	private ArrayList<Integer> ISBNList;
+	private MyStack <Book>basket;
 
 	// -----------------------------------------------------------------
 	// Methods
@@ -28,11 +38,8 @@ public class Client {
 	public Client(String id, int time) {
 		this.id = id;
 		this.time = time;
-	}
-	
-	//Discutir
-	public Client(String id) {
-		this.id = id;
+		ISBNList = new ArrayList<Integer>();
+		basket = new MyStack<Book>();
 	}
 
 	public String toString() {
@@ -53,5 +60,25 @@ public class Client {
 
 	public void setTime(int time) {
 		this.time = time;
+	}
+
+	public String getBookList() {
+		String list = "";
+		for (int i = 0; i < ISBNList.size(); i++) {
+			list += ISBNList.get(i) + "\n";
+		}
+		return list;
+	}
+
+	public ArrayList<Integer> getISBNList() {
+		return ISBNList;
+	}
+
+	public void setISBNList(ArrayList<Integer> iSBNList) {
+		ISBNList = iSBNList;
+	}
+
+	public MyStack<Book> getBasket() {
+		return basket;
 	}
 }

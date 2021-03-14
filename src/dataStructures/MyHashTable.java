@@ -16,6 +16,12 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	public static final double ARBITRARY_NUMBER = (Math.sqrt(5) - 1.0) / 2.0;
 
 	// -----------------------------------------------------------------
+	// Constants
+	// -----------------------------------------------------------------
+
+	private final String identifier;
+
+	// -----------------------------------------------------------------
 	// Relations
 	// -----------------------------------------------------------------
 
@@ -33,14 +39,18 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	 * @param bookNum - number of book in a shelf - bookNum = int, bookNum != null, bookNum != 0
 	 */
 	@SuppressWarnings("unchecked")
-	public MyHashTable() {
-		nodes= (HNode<K,V>[])new HNode[ARRAY_SIZE];
-		//nodes=(HNode<K,V>[]) new Object[ARRAY_SIZE]; //To discuss
+	public MyHashTable(String identifier) {
+		nodes = (HNode<K, V>[]) new HNode[ARRAY_SIZE];
+		this.identifier = identifier;
+		// nodes=(HNode<K,V>[]) new Object[ARRAY_SIZE]; //To discuss
 		/**
-		 * 	nodes = new ArrayList<>();
-			for (int i = 0; i < ARRAY_SIZE; i++)
-			nodes.add(null);
-		*/
+		 * nodes = new ArrayList<>(); for (int i = 0; i < ARRAY_SIZE; i++)
+		 * nodes.add(null);
+		 */
+	}
+
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	@Override
@@ -60,7 +70,15 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	}
 
 	@Override
-	public HNode<K, V> search(K key) {
+	public V search(K key) {
+		HNode<K, V> found = privateSearch(key);
+		if (found != null)
+			return found.getValue();
+		else
+			return null;
+	}
+
+	private HNode<K, V> privateSearch(K key) {
 		int index = hash((int) key);
 		boolean found = true;
 		HNode<K, V> temp = nodes[index];
@@ -81,14 +99,14 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 
 	@Override
 	public void delete(K key) {
-		HNode<K, V> nodeToDelete = search(key);
+		HNode<K, V> nodeToDelete = privateSearch(key);
 		if (nodeToDelete != null) {
 			HNode<K, V> prev = nodeToDelete.getPrev();
 			HNode<K, V> next = nodeToDelete.getNext();
 			if (prev == null) {
 				int index = hash((int) key);
 				next.setPrev(null);
-				nodes[index]=next;
+				nodes[index] = next;
 			} else {
 				if (next == null)
 					prev.setNext(null);
