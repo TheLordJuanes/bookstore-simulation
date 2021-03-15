@@ -11,15 +11,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import dataStructures.MyStack;
+import exceptions.MyQueueException;
 import dataStructures.MyQueue;
 
 public class Bookstore {
-
-	// -----------------------------------------------------------------
-	// Attributes
-	// -----------------------------------------------------------------
-
-	private int numberOfCashiers;
 
 	// -----------------------------------------------------------------
 	// Relations
@@ -27,17 +22,30 @@ public class Bookstore {
 
 	private ArrayList<Shelf<Integer, Book>> shelves;
 	private ArrayList<Client> clients;
+	private Cashier[] cashiers;
 
 	// -----------------------------------------------------------------
 	// Methods
 	// -----------------------------------------------------------------
 
 	/**
-	 * Name: Bookstore Constructor method of a bookstore.
-	 */
+	 * Name: Bookstore
+	 * Constructor method of a bookstore.
+	*/
 	public Bookstore() {
 		shelves = new ArrayList<>();
 		clients = new ArrayList<>();
+		cashiers = new Cashier[0];
+	}
+
+	public void addCashiers(int numberOfCashiers) {
+		cashiers = new Cashier[numberOfCashiers];
+		for (int i = 0; i < numberOfCashiers; i++)
+			cashiers[i] = new Cashier();
+	}
+
+	public int getNumberOfCashiers(){
+		return cashiers.length;
 	}
 
 	public boolean addBook(int bIsbn, int numberOfCopies, String bookShelf, double bookPrice) {
@@ -106,7 +114,7 @@ public class Bookstore {
 				case 'B':
 					result = bubbleSort(books);
 					break;
-				case 'C':
+				case 'H':
 					result = heapSort(books);
 					break;
 				default:
@@ -141,9 +149,9 @@ public class Bookstore {
 		ArrayList<Book> L = new ArrayList<Book>();
 		ArrayList<Book> R = new ArrayList<Book>();
 		for (int i = 0; i < n1; ++i)
-			L.set(i, books.get(l+1));
+			L.set(i, books.get(l + 1));
 		for (int j = 0; j < n2; ++j) {
-			R.set(j, books.get(m+1+j));
+			R.set(j, books.get(m + 1 + j));
 		}
 		int i = 0, j = 0;
 		int k = l;
@@ -171,8 +179,8 @@ public class Bookstore {
 
 	private ArrayList<Book> bubbleSort(ArrayList<Book> books) {
 		Book aux;
-    	for (int i = 0; i < books.size() - 1; i++) {
-    	    for (int j = 0; j < books.size() - i - 1; j++) {
+		for (int i = 0; i < books.size() - 1; i++) {
+			for (int j = 0; j < books.size() - i - 1; j++) {
 				int result = books.get(j).getShelf().compareTo(books.get(j + 1).getShelf());
 				if (result > 0) {
 					aux = books.get(j);
@@ -184,9 +192,9 @@ public class Bookstore {
 					books.set(j + 1, aux);
 				}
 			}
-    	}
+		}
 		return books;
-    }
+	}
 
 	private ArrayList<Book> heapSort(ArrayList<Book> books) {
 		int n = books.size();
@@ -215,9 +223,6 @@ public class Bookstore {
 			books.set(largest, swap);
 			heapify(books, n, largest);
 		}
-	}
-
-	public void orderClientsByTime() {
 	}
 
 	public void simulatePayment() {
@@ -262,14 +267,6 @@ public class Bookstore {
 		return shelves.size();
 	}
 
-	public int getNumberOfCashiers() {
-		return numberOfCashiers;
-	}
-
-	public void setNumberOfCashiers(int numberOfCashiers) {
-		this.numberOfCashiers = numberOfCashiers;
-	}
-
 	public String[] getIdentifiers() {
 		String identifiers[] = new String[shelves.size()];
 		for (int i = 0; i < shelves.size(); i++)
@@ -288,6 +285,19 @@ public class Bookstore {
 		return ids;
 	}
 
+	public String giveResult(char typeOfSort) throws MyQueueException {
+		String info = "";
+		ArrayList<Client> clientsDeparture = new ArrayList<>();
+		info += simulateFirstSection();
+		info += simulateSecondSection(typeOfSort);
+		info += simulateThirdSection();
+		// info += simulateFourthSection(clientsDeparture);
+		simulateFourthSection(clientsDeparture);
+		for (int i = 0; i < clientsDeparture.size(); i++)
+			info += clientsDeparture.get(i).toString();
+		return info;
+	}
+
 	public String simulateFirstSection() {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
@@ -298,22 +308,12 @@ public class Bookstore {
 		return info;
 	}
 
-	public String simulateSecondSection(int orderBy) {
+	public String simulateSecondSection(char orderBy) {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
 			Client currentClient = clients.get(i);
 			info += "Client " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
-			switch (orderBy) {
-			// Bubble sort
-			case 1:
-				break;
-			// Counting sort
-			case 2:
-				break;
-			// Radix sort
-			case 3:
-				break;
-			}
+			orderClientsBooks(orderBy);
 			info += "List of Books:\n" + currentClient.getBookList();
 		}
 		return info;
@@ -330,6 +330,8 @@ public class Bookstore {
 			currentClient.setTime(currentClient.getTime() + basket.getLength());
 		}
 		Collections.sort(clients, new Comparator<Client>() {
+
+			@Override
 			public int compare(Client c1, Client c2) {
 				int comp = c1.getTime() - c2.getTime();
 				if (comp == 0)
@@ -345,13 +347,21 @@ public class Bookstore {
 		return info;
 	}
 
-	public String simulateFourthSection() {
-		String info = "";
-		// ArrayList<Client> clientsDeparture;
+	public void simulateFourthSection(ArrayList<Client> clientsDeparture) throws MyQueueException {
+		//String info = "";
 		MyQueue<Client> line = new MyQueue<>(clients);
-		// int time = 1;
+		//int time = 0;
 		while (line.getLength() > 0) {
+			for (int i = 0; i < cashiers.length; i++) {
+				if (cashiers[i].isFree())
+					cashiers[i].setCurrentClient(line.dequeue());
+				else {
+					cashiers[i].registerBook();
+					if (cashiers[i].getCurrentClient().getBasket().isEmpty())
+						clientsDeparture.add(cashiers[i].sayByeToClient());
+				}
+			}
 		}
-		return info;
+		//return info;
 	}
 }

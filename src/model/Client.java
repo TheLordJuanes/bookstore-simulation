@@ -23,7 +23,8 @@ public class Client {
     // -----------------------------------------------------------------
 
 	private ArrayList<Integer> ISBNList;
-	private MyStack <Book>basket;
+	private MyStack<Book> basket;
+	private MyStack<Book> bag;
 
 	// -----------------------------------------------------------------
 	// Methods
@@ -40,10 +41,7 @@ public class Client {
 		this.time = time;
 		ISBNList = new ArrayList<Integer>();
 		basket = new MyStack<Book>();
-	}
-
-	public String toString() {
-		return "";
+		bag = new MyStack<Book>();
 	}
 
 	public String getId() {
@@ -64,9 +62,8 @@ public class Client {
 
 	public String getBookList() {
 		String list = "";
-		for (int i = 0; i < ISBNList.size(); i++) {
+		for (int i = 0; i < ISBNList.size(); i++)
 			list += ISBNList.get(i) + "\n";
-		}
 		return list;
 	}
 
@@ -80,5 +77,31 @@ public class Client {
 
 	public MyStack<Book> getBasket() {
 		return basket;
+	}
+
+    public void setBasket(MyStack<Book> basket) {
+        this.basket = basket;
+    }
+
+    public MyStack<Book> getBag() {
+        return bag;
+    }
+
+	private double calculateTotal() {
+		double result=0;
+		
+		return result;
+	}
+
+    public void setBag(MyStack<Book> bag) {
+        this.bag = bag;
+    }
+
+	@Override
+	public String toString(){
+		String message=id +" " + calculateTotal()+"\n"+
+		bag.toString();
+
+		return message;
 	}
 }

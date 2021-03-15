@@ -124,50 +124,55 @@ public class BookStoreGUI {
             primaryStage.setTitle("Initial parameters");
             primaryStage.setScene(new Scene(initialParameters));
             txtNumberOfShelves.textProperty().addListener(new ChangeListener<String>() {
+
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,20}?"))
-                    	txtNumberOfShelves.setText(oldValue);
+                        txtNumberOfShelves.setText(oldValue);
                 }
             });
             txtNumberOfCashiers.textProperty().addListener(new ChangeListener<String>() {
+
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,20}?"))
-                    	txtNumberOfCashiers.setText(oldValue);
+                        txtNumberOfCashiers.setText(oldValue);
                 }
             });
             txtISBN.textProperty().addListener(new ChangeListener<String>() {
+
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,13}?"))
-                    	txtISBN.setText(oldValue);
+                        txtISBN.setText(oldValue);
                 }
             });
             txtNumberOfCopies.textProperty().addListener(new ChangeListener<String>() {
+
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,3}?"))
-                    	txtNumberOfCopies.setText(oldValue);
+                        txtNumberOfCopies.setText(oldValue);
                 }
             });
             txtBookPrice.textProperty().addListener(new ChangeListener<String>() {
+
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,3}?"))
-                    	txtBookPrice.setText(oldValue);
+                        txtBookPrice.setText(oldValue);
                 }
             });
-            if(bookstore.getNumberOfCashiers()==0 || bookstore.getNumberOfShelves()==0) {
-            	txtISBN.setDisable(true);
-            	txtNumberOfCopies.setDisable(true);
-            	cbBookShelf.setDisable(true);
-            	txtBookPrice.setDisable(true);
-            	btnAddBook.setDisable(true);
-            }else {
-            	String[] identifiers = bookstore.getIdentifiers();
-            	for(int i=0; i<identifiers.length; i++)
-            		cbBookShelf.getItems().add(identifiers[i]);
+            if (bookstore.getNumberOfCashiers() == 0 || bookstore.getNumberOfShelves() == 0) {
+                txtISBN.setDisable(true);
+                txtNumberOfCopies.setDisable(true);
+                cbBookShelf.setDisable(true);
+                txtBookPrice.setDisable(true);
+                btnAddBook.setDisable(true);
+            } else {
+                String[] identifiers = bookstore.getIdentifiers();
+                for (int i = 0; i < identifiers.length; i++)
+                    cbBookShelf.getItems().add(identifiers[i]);
             }
             primaryStage.show();
         } catch (IOException ioe) {
@@ -211,8 +216,8 @@ public class BookStoreGUI {
         int numberOfCopies = Integer.parseInt(txtNumberOfCopies.getText());
         String bookShelf = cbBookShelf.getValue();
         double bookPrice = Double.parseDouble(txtBookPrice.getText());
-        if(bookstore.addBook(bIsbn,numberOfCopies,bookShelf,bookPrice))
-            showErrorAlert("Error adding book",null,"A book with that ISBN has already been added to the library");
+        if (bookstore.addBook(bIsbn, numberOfCopies, bookShelf, bookPrice))
+            showErrorAlert("Error adding book", null, "A book with that ISBN has already been added to the library");
         txtISBN.setText("");
         txtBookPrice.setText("");
         txtNumberOfCopies.setText("");
@@ -315,22 +320,24 @@ public class BookStoreGUI {
     public void giveResult(ActionEvent event) {
         if (cbSortingAlgorithm.getValue().equals("Bubble sort"))
             bookstore.orderClientsBooks('B');
-        else if (cbSortingAlgorithm.getValue().equals("Counting sort"))
-            bookstore.orderClientsBooks('C');
+        else if (cbSortingAlgorithm.getValue().equals("Merge sort"))
+            bookstore.orderClientsBooks('M');
         else
-            bookstore.orderClientsBooks('R');
+            bookstore.orderClientsBooks('H');
     }
 
     @FXML
     public void addData(ActionEvent event) {
-    	String shelves = txtNumberOfShelves.getText();
+        String shelves = txtNumberOfShelves.getText();
         String cashiers = txtNumberOfCashiers.getText();
         if (shelves.equals("") || cashiers.equals(""))
             showErrorAlert("At least one text field is empty", null, "Please fill both text fields (number of shelves, number of cashiers)");
+        else if (Integer.parseInt(cashiers) <= 0)
+            showErrorAlert("Invalid number of cashiers", null, "There must be at least one cashier");
         else {
             int nShelves = Integer.valueOf(shelves);
             int nCashiers = Integer.valueOf(cashiers);
-            bookstore.setNumberOfCashiers(nCashiers);
+            bookstore.addCashiers(nCashiers);
             bookstore.createShelves(nShelves);
             startSimulation(event);
         }

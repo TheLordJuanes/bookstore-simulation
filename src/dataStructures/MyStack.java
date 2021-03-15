@@ -6,7 +6,7 @@
 */
 package dataStructures;
 
-public class MyStack<T> implements MyStackInterface<T> {
+public class MyStack<T> implements MyStackInterface<T>, Cloneable {
 
     // -----------------------------------------------------------------
 	// Attributes
@@ -48,13 +48,17 @@ public class MyStack<T> implements MyStackInterface<T> {
         this.top = top;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toString(){
-        String info="";
-        Node<T> temp = top;
-        for(int i=length; i>0; i--){
-            info+=temp.getValue()+info;
-            temp = temp.getPrevNode();
+    public String toString() {
+        String info = "";
+        MyStack<T> copy;
+        try {
+            copy = (MyStack<T>) this.clone();
+            for (int i = length; i > 0; i--)
+                info += copy.pop().toString() + " ";
+        } catch (CloneNotSupportedException cnse) {
+            cnse.printStackTrace();
         }
         return info;
     }

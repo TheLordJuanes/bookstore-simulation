@@ -7,10 +7,9 @@
 package dataStructures;
 
 import java.util.ArrayList;
-
 import exceptions.MyQueueException;
 
-public class MyQueue<T> implements MyQueueInterface<T> {
+public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
 
     // -----------------------------------------------------------------
     // Attributes
@@ -63,13 +62,19 @@ public class MyQueue<T> implements MyQueueInterface<T> {
         this.back = back;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public String toString() {
         String info = "";
-        Node<T> temp = front;
-        for (int i = length; i > 0; i--) {
-            info += temp.getValue() + info;
-            temp = temp.getPrevNode();
+        MyQueue<T> copy;
+        try {
+            copy = (MyQueue<T>) this.clone();
+            for (int i = 0; i < length; i++)
+                info += copy.dequeue() + " ";
+        } catch (CloneNotSupportedException cnse) {
+            cnse.printStackTrace();
+        } catch (MyQueueException mqe) {
+            mqe.printStackTrace();
         }
         return info;
     }
