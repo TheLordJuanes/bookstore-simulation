@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -67,6 +68,9 @@ public class BookStoreGUI {
 
     @FXML
     private ChoiceBox<String> cbSortingAlgorithm;
+    
+    @FXML
+    private TextArea textArea;
 
     private Stage primaryStage;
 
@@ -318,12 +322,16 @@ public class BookStoreGUI {
     */
     @FXML
     public void giveResult(ActionEvent event) {
-        if (cbSortingAlgorithm.getValue().equals("Bubble sort"))
-            bookstore.orderClientsBooks('B');
-        else if (cbSortingAlgorithm.getValue().equals("Merge sort"))
-            bookstore.orderClientsBooks('M');
-        else
-            bookstore.orderClientsBooks('H');
+    	 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
+         fxmlLoader.setController(this);
+         try {
+             Parent result = fxmlLoader.load();
+             primaryStage.setTitle("Result");
+             primaryStage.setScene(new Scene(result));
+             primaryStage.show();
+         }catch (IOException ioe) {
+             ioe.printStackTrace();
+         }
     }
 
     @FXML
@@ -341,5 +349,22 @@ public class BookStoreGUI {
             bookstore.createShelves(nShelves);
             startSimulation(event);
         }
+    }
+    
+    @FXML
+    void reload(ActionEvent event) {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
+		BookStoreGUI bookStoreGUI = new BookStoreGUI(primaryStage);
+		fxmlLoader.setController(bookStoreGUI);
+		Parent root;
+		try {
+			root = fxmlLoader.load();
+			primaryStage.setScene(new Scene(root));
+			primaryStage.setTitle("BookStore S.A.S.");
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
     }
 }
