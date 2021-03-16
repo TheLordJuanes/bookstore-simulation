@@ -35,7 +35,7 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="499.0" layoutY="44.0" mnemonicParsing="false" onAction="#giveResult" text="Done" textAlignment="RIGHT">
+      <Button fx:id="btnDone" alignment="CENTER" disable="true" layoutX="499.0" layoutY="44.0" mnemonicParsing="false" onAction="#giveResult" text="Done" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

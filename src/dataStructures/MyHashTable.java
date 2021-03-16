@@ -19,7 +19,6 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	// Relations
 	// -----------------------------------------------------------------
 
-	//private ArrayList<HNode<K, V>> nodes;
 	private HNode<K,V>[] nodes;
 
 	// -----------------------------------------------------------------
@@ -35,12 +34,8 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	@SuppressWarnings("unchecked")
 	public MyHashTable() {
 		nodes = (HNode<K, V>[]) new HNode[ARRAY_SIZE];
-		// nodes=(HNode<K,V>[]) new Object[ARRAY_SIZE]; //To discuss
-		/**
-		 * nodes = new ArrayList<>(); for (int i = 0; i < ARRAY_SIZE; i++)
-		 * nodes.add(null);
-		 */
 	}
+
 
 	@Override
 	public void insert(K key, V value) {
@@ -110,5 +105,15 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	public int hash(int k) {
 		int index = (int) Math.floor(ARRAY_SIZE * ((k * ARBITRARY_NUMBER) % 1));
 		return index;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		boolean result = true;
+		for (int i = 0; i < nodes.length; i++) {
+			if (nodes[i] != null)
+				result = false;
+		}
+		return result;
 	}
 }

@@ -15,11 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import java.io.IOException;
+import exceptions.MyQueueException;
+import exceptions.MyStackException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -49,6 +52,15 @@ public class BookStoreGUI {
     private TextField txtClientIdEnter;
 
     @FXML
+    private Button btnContinue;
+
+    @FXML
+    private Button btnAddData;
+
+    @FXML
+    private Label lbStatusData;
+
+    @FXML
     private TextField txtISBNList;
 
     @FXML
@@ -68,7 +80,10 @@ public class BookStoreGUI {
 
     @FXML
     private ChoiceBox<String> cbSortingAlgorithm;
-    
+
+    @FXML
+    private Button btnDone;
+
     @FXML
     private TextArea textArea;
 
@@ -155,7 +170,7 @@ public class BookStoreGUI {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,3}?"))
+                    if (!newValue.matches("\\d{0,10}?"))
                         txtNumberOfCopies.setText(oldValue);
                 }
             });
@@ -163,17 +178,16 @@ public class BookStoreGUI {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!newValue.matches("\\d{0,3}?"))
+                    if (!newValue.matches("\\d{0,10}?"))
                         txtBookPrice.setText(oldValue);
                 }
             });
-            if (bookstore.getNumberOfCashiers() == 0 || bookstore.getNumberOfShelves() == 0) {
-                txtISBN.setDisable(true);
-                txtNumberOfCopies.setDisable(true);
-                cbBookShelf.setDisable(true);
-                txtBookPrice.setDisable(true);
-                btnAddBook.setDisable(true);
-            } else {
+            if (bookstore.getNumberOfCashiers() > 0 || bookstore.getNumberOfShelves() > 0) {
+                txtISBN.setDisable(false);
+                txtNumberOfCopies.setDisable(false);
+                cbBookShelf.setDisable(false);
+                txtBookPrice.setDisable(false);
+                btnAddBook.setDisable(false);
                 String[] identifiers = bookstore.getIdentifiers();
                 for (int i = 0; i < identifiers.length; i++)
                     cbBookShelf.getItems().add(identifiers[i]);
@@ -196,6 +210,7 @@ public class BookStoreGUI {
 		alert.setHeaderText(null);
 		alert.setContentText("If you go back, the book catalog will be lost.");
         if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
+            bookstore = new Bookstore();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
             fxmlLoader.setController(this);
             try {
@@ -216,15 +231,22 @@ public class BookStoreGUI {
     */
     @FXML
     public void addBook(ActionEvent event) {
-        int bIsbn = Integer.parseInt(txtISBN.getText());
-        int numberOfCopies = Integer.parseInt(txtNumberOfCopies.getText());
-        String bookShelf = cbBookShelf.getValue();
-        double bookPrice = Double.parseDouble(txtBookPrice.getText());
-        if (bookstore.addBook(bIsbn, numberOfCopies, bookShelf, bookPrice))
-            showErrorAlert("Error adding book", null, "A book with that ISBN has already been added to the library");
-        txtISBN.setText("");
-        txtBookPrice.setText("");
-        txtNumberOfCopies.setText("");
+        if (txtISBN.getText().equals("") || txtNumberOfCopies.getText().equals("") || cbBookShelf.getValue() == null || txtBookPrice.getText().equals(""))
+            showWarningAlert("Empty field", null, "Every field must be filled");
+        else {
+            int bIsbn = Integer.parseInt(txtISBN.getText());
+            int numberOfCopies = Integer.parseInt(txtNumberOfCopies.getText());
+            String bookShelf = cbBookShelf.getValue();
+            double bookPrice = Double.parseDouble(txtBookPrice.getText());
+            if (bookstore.addBook(bIsbn, numberOfCopies, bookShelf, bookPrice)) {
+                showErrorAlert("Error adding book", null, "A book with the ISBN " + bIsbn + " has already been added to the library");
+            }
+            btnContinue.setDisable(bookstore.areShelvesEmpty());
+            txtISBN.setText("");
+            txtBookPrice.setText("");
+            txtNumberOfCopies.setText("");
+            cbBookShelf.setValue(null);
+        }
     }
 
     /**
@@ -244,14 +266,14 @@ public class BookStoreGUI {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,20}?"))
-                    	txtClientIdEnter.setText(oldValue);
+                        txtClientIdEnter.setText(oldValue);
                 }
             });
             txtISBNList2.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     if (!newValue.matches("\\d{0,13}?"))
-                    	txtISBNList2.setText(oldValue);
+                        txtISBNList2.setText(oldValue);
                 }
             });
             if (bookstore.getNumberOfClients() == 0) {
@@ -280,11 +302,19 @@ public class BookStoreGUI {
     @FXML
     public void goBack2(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Are you sure?");
-		alert.setHeaderText(null);
-		alert.setContentText("If you go back, the book catalog will be lost.");
-        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent())
+        alert.setTitle("Are you sure?");
+        alert.setHeaderText(null);
+        alert.setContentText("If you go back, the clients' information will be lost.");
+        if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
+            bookstore.emptyClients();
             startSimulation(event);
+        }
+        txtNumberOfCashiers.setText(String.valueOf(bookstore.getNumberOfCashiers()));
+        txtNumberOfShelves.setText(String.valueOf(bookstore.getNumberOfShelves()));
+        txtNumberOfCashiers.setDisable(true);
+        txtNumberOfShelves.setDisable(true);
+        btnAddData.setDisable(true);
+        btnContinue.setDisable(false);
     }
 
     /**
@@ -296,7 +326,7 @@ public class BookStoreGUI {
     public void addClient(ActionEvent event) {
         String clientId = txtClientIdEnter.getText();
         if (clientId.equals(""))
-            showErrorAlert("The text field is empty", null, "Please enter the client id");
+            showWarningAlert("The text field is empty", null, "Please enter a client id");
         else {
             if (bookstore.addClient(clientId)) {
                 showWarningAlert("The client was not added", null, "There is already a client with the id: " + clientId);
@@ -312,7 +342,16 @@ public class BookStoreGUI {
     */
     @FXML
     public void appendBook(ActionEvent event) {
-
+        if (cbSortingAlgorithm.getValue() == null ||cbClientIdList.getValue() == null || txtISBNList2.getText().equals(""))
+            showWarningAlert("Empty field", null, "Please fill the necessary information.");
+        else {
+            String clientId = cbClientIdList.getValue();
+            int isbn = Integer.parseInt(txtISBNList2.getText());
+            if (!bookstore.addBookToClient(clientId, isbn))
+                showWarningAlert("Book not found", null, "The book with ISBN " + isbn + " doesn't exist in the system.");
+            else
+                btnDone.setDisable(false);
+        }
     }
 
     /**
@@ -322,16 +361,22 @@ public class BookStoreGUI {
     */
     @FXML
     public void giveResult(ActionEvent event) {
-    	 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
-         fxmlLoader.setController(this);
-         try {
-             Parent result = fxmlLoader.load();
-             primaryStage.setTitle("Result");
-             primaryStage.setScene(new Scene(result));
-             primaryStage.show();
-         }catch (IOException ioe) {
-             ioe.printStackTrace();
-         }
+        char typeOfSort = cbSortingAlgorithm.getValue().charAt(0);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
+        fxmlLoader.setController(this);
+        try {
+            Parent result = fxmlLoader.load();
+            primaryStage.setTitle("Result");
+            primaryStage.setScene(new Scene(result));
+            textArea.setText(bookstore.giveResult(typeOfSort));
+            primaryStage.show();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (MyQueueException mqe) {
+            mqe.printStackTrace();
+        } catch (MyStackException mse) {
+            mse.printStackTrace();
+        }
     }
 
     @FXML
@@ -348,12 +393,17 @@ public class BookStoreGUI {
             bookstore.addCashiers(nCashiers);
             bookstore.createShelves(nShelves);
             startSimulation(event);
+            txtNumberOfCashiers.setText(String.valueOf(bookstore.getNumberOfCashiers()));
+            txtNumberOfShelves.setText(String.valueOf(bookstore.getNumberOfShelves()));
+            txtNumberOfCashiers.setDisable(true);
+            txtNumberOfShelves.setDisable(true);
+            btnAddData.setDisable(true);
         }
     }
-    
+
     @FXML
-    void reload(ActionEvent event) {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
+    public void reload(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
 		BookStoreGUI bookStoreGUI = new BookStoreGUI(primaryStage);
 		fxmlLoader.setController(bookStoreGUI);
 		Parent root;
@@ -362,9 +412,8 @@ public class BookStoreGUI {
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setTitle("BookStore S.A.S.");
 			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
 		}
-		
     }
 }

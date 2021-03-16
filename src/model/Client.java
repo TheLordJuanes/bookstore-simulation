@@ -89,7 +89,6 @@ public class Client {
 
 	private double calculateTotal() {
 		double result=0;
-		
 		return result;
 	}
 
@@ -101,7 +100,6 @@ public class Client {
 	public String toString(){
 		String message=id +" " + calculateTotal()+"\n"+
 		bag.toString();
-
 		return message;
 	}
 }

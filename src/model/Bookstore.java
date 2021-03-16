@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import dataStructures.MyStack;
 import exceptions.MyQueueException;
+import exceptions.MyStackException;
 import dataStructures.MyQueue;
 
 public class Bookstore {
@@ -48,17 +49,43 @@ public class Bookstore {
 		return cashiers.length;
 	}
 
+	public boolean addBookToClient(String id, int isbn) {
+		boolean found = false;
+		if (checkBook(isbn)) {
+			for (int i = 0; i < clients.size() && !found; i++) {
+				if (clients.get(i).getId().equals(id)) {
+					clients.get(i).getISBNList().add(isbn);
+					found = true;
+				}
+			}
+		}
+		return found;
+	}
+
+	public void emptyClients(){
+		clients.clear();
+	}
+
+	public boolean areShelvesEmpty() {
+		boolean result = true;
+		for (int i = 0; i < shelves.size(); i++) {
+			if (!shelves.get(i).isEmpty())
+				result = false;
+		}
+		return result;
+	}
+
 	public boolean addBook(int bIsbn, int numberOfCopies, String bookShelf, double bookPrice) {
 		Book newBook = new Book(bIsbn, numberOfCopies, bookPrice, bookShelf);
+		boolean alreadyExist = checkBook(bIsbn);
 		boolean found = false;
-		for (int i = 0; i < shelves.size() && !found; i++) {
+		for (int i = 0; i < shelves.size() && !found && !alreadyExist; i++) {
 			if (shelves.get(i).getIdentifier().equals(bookShelf)) {
 				shelves.get(i).insert(bIsbn, newBook);
 				found = true;
 			}
 		}
-		found = checkBook(bIsbn);
-		return found;
+		return alreadyExist;
 	}
 
 	public boolean checkBook(int isbn) {
@@ -225,17 +252,6 @@ public class Bookstore {
 		}
 	}
 
-	public void simulatePayment() {
-	}
-
-	public double calculatePayment() {
-		return 0;
-	}
-
-	public String[] resultsReport() {
-		return null;
-	}
-
 	public void createShelves(int numberOfS) {
 		int nPrevLetter = 0;
 		int index = 90;
@@ -255,12 +271,6 @@ public class Bookstore {
 			} else
 				index++;
 		}
-		testCreateShelves();
-	}
-
-	public void testCreateShelves() {
-		for (int i = 0; i < shelves.size(); i++)
-			System.out.println(shelves.get(i).getIdentifier());
 	}
 
 	public int getNumberOfShelves() {
@@ -285,7 +295,7 @@ public class Bookstore {
 		return ids;
 	}
 
-	public String giveResult(char typeOfSort) throws MyQueueException {
+	public String giveResult(char typeOfSort) throws MyQueueException, MyStackException {
 		String info = "";
 		ArrayList<Client> clientsDeparture = new ArrayList<>();
 		info += simulateFirstSection();
@@ -347,10 +357,8 @@ public class Bookstore {
 		return info;
 	}
 
-	public void simulateFourthSection(ArrayList<Client> clientsDeparture) throws MyQueueException {
-		//String info = "";
+	public void simulateFourthSection(ArrayList<Client> clientsDeparture) throws MyQueueException, MyStackException {
 		MyQueue<Client> line = new MyQueue<>(clients);
-		//int time = 0;
 		while (line.getLength() > 0) {
 			for (int i = 0; i < cashiers.length; i++) {
 				if (cashiers[i].isFree())
@@ -362,6 +370,5 @@ public class Bookstore {
 				}
 			}
 		}
-		//return info;
 	}
 }

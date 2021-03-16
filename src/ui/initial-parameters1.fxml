@@ -45,19 +45,19 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtISBN" layoutX="289.0" layoutY="332.0" />
+      <TextField fx:id="txtISBN" disable="true" layoutX="289.0" layoutY="332.0" />
       <Label layoutX="51.0" layoutY="375.0" text="Number of copies:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNumberOfCopies" layoutX="289.0" layoutY="376.0" />
+      <TextField fx:id="txtNumberOfCopies" disable="true" layoutX="289.0" layoutY="376.0" />
       <Label layoutX="51.0" layoutY="420.0" text="Book shelf:">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddBook" alignment="CENTER" layoutX="487.0" layoutY="394.0" mnemonicParsing="false" onAction="#addBook" prefWidth="127.0" text="Add book" textAlignment="CENTER">
+      <Button fx:id="btnAddBook" alignment="CENTER" disable="true" layoutX="487.0" layoutY="394.0" mnemonicParsing="false" onAction="#addBook" prefWidth="127.0" text="Add book" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
@@ -67,8 +67,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookPrice" layoutX="289.0" layoutY="466.0" />
-      <Button alignment="CENTER" layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
+      <TextField fx:id="txtBookPrice" disable="true" layoutX="289.0" layoutY="466.0" />
+      <Button fx:id="btnContinue" alignment="CENTER" disable="true" layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onAction="#goForward" text="Continue" textAlignment="RIGHT">
          <font>
             <Font size="18.0" />
          </font>
@@ -98,12 +98,12 @@
             <SepiaTone />
          </effect>
       </Label>
-      <Button alignment="CENTER" layoutX="487.0" layoutY="180.0" mnemonicParsing="false" onAction="#addData" prefWidth="127.0" text="Add data" textAlignment="CENTER">
+      <Button fx:id="btnAddData" alignment="CENTER" layoutX="487.0" layoutY="179.0" mnemonicParsing="false" onAction="#addData" prefWidth="127.0" text="Add data" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="cbBookShelf" layoutX="289.0" layoutY="422.0" prefWidth="186.0" />
+      <ChoiceBox fx:id="cbBookShelf" disable="true" layoutX="289.0" layoutY="422.0" prefWidth="186.0" />
    </children>
    <effect>
       <InnerShadow />

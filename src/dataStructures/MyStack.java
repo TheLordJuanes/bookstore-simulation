@@ -6,6 +6,8 @@
 */
 package dataStructures;
 
+import exceptions.MyStackException;
+
 public class MyStack<T> implements MyStackInterface<T>, Cloneable {
 
     // -----------------------------------------------------------------
@@ -59,18 +61,28 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
                 info += copy.pop().toString() + " ";
         } catch (CloneNotSupportedException cnse) {
             cnse.printStackTrace();
+        } catch (MyStackException mse) {
+            mse.printStackTrace();
         }
         return info;
     }
 
     @Override
-    public T pop() {
-        Node<T> temp = top.getPrevNode();
-        Node<T> nodeDeleted = top;
-        temp.setNextNode(null);
-        top = temp;
-        length--;
-        return nodeDeleted.getValue();
+    public T pop() throws MyStackException {
+        if (isEmpty())
+            throw new MyStackException("The stack is empty.");
+        else if (length == 1) {
+            T result = top.getValue();
+            top = null;
+            return result;
+        } else {
+            Node<T> temp = top.getPrevNode();
+            Node<T> nodeDeleted = top;
+            temp.setNextNode(null);
+            top = temp;
+            length--;
+            return nodeDeleted.getValue();
+        }
     }
 
     @Override
@@ -85,8 +97,11 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @Override
-    public T peek() {
-        return top.getValue();
+    public T peek() throws MyStackException {
+        if (isEmpty())
+            throw new MyStackException("The stack is empty.");
+        else
+            return top.getValue();
     }
 
     @Override

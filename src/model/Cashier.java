@@ -7,6 +7,7 @@
 package model;
 
 import dataStructures.MyStack;
+import exceptions.MyStackException;
 
 public class Cashier {
 
@@ -41,7 +42,7 @@ public class Cashier {
         return bag;
     }
 
-    public void registerBook() {
+    public void registerBook() throws MyStackException {
         Book book = currentClient.getBasket().pop();
         bag.push(book);
     }
