@@ -35,6 +35,10 @@ public class Book {
 		this.price = price;
 	}
 
+	public void decreaseCopies() {
+		copies--;
+	}
+
 	public int getIsbn() {
 		return isbn;
 	}

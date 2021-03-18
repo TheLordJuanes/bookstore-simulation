@@ -65,19 +65,21 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	private HNode<K, V> privateSearch(K key) {
 		int index = hash((int) key);
 		boolean found = false;
+		boolean stop = false;
 		HNode<K, V> temp = nodes[index];
 		if (temp != null) {
-			if(temp.getKey().equals(key)) {
-				found=true;
-			}else {
-				while (!temp.getKey().equals(key)  && !found) {
-					if (temp.getPrev() != null)
-						temp = temp.getNext();
-					else
+			if (temp.getKey().equals(key))
+				found = true;
+			else {
+				while (!found && !stop) {
+					if (temp.getKey().equals(key))
 						found = true;
+					else if (temp.getNext() == null)
+						stop = true;
+					else
+						temp = temp.getNext();
 				}
 			}
-			
 		}
 		if (found)
 			return temp;
@@ -106,7 +108,7 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 		}
 	}
 
-	public int hash(int k) {
+	public static int hash(int k) {
 		int index = (int) Math.floor(ARRAY_SIZE * ((k * ARBITRARY_NUMBER) % 1));
 		return index;
 	}

@@ -39,6 +39,10 @@ public class Bookstore {
 		cashiers = new Cashier[0];
 	}
 
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
 	public void addCashiers(int numberOfCashiers) {
 		cashiers = new Cashier[numberOfCashiers];
 		for (int i = 0; i < numberOfCashiers; i++)
@@ -132,25 +136,22 @@ public class Bookstore {
 		return books;
 	}
 
-	public void orderClientsBooks(char sortingAlgorithm) {
+	public void orderClientsBooks(char sortingAlgorithm, Client currentClient) {
 		ArrayList<Book> result;
-		for (int i = 0; i < clients.size(); i++) {
-			Client currentClient = clients.get(i);
-			ArrayList<Book> books = createListBooks(currentClient.getISBNList());
-			switch (sortingAlgorithm) {
-				case 'B':
-					result = bubbleSort(books);
-					break;
-				case 'H':
-					result = heapSort(books);
-					break;
-				default:
-					result = mergeSort(books, 0, books.size() - 1);
-					break;
-			}
-			ArrayList<Integer> isbns = booksToISBN(result);
-			currentClient.setISBNList(isbns);
+		ArrayList<Book> books = createListBooks(currentClient.getISBNList());
+		switch (sortingAlgorithm) {
+		case 'B':
+			result = bubbleSort(books);
+			break;
+		case 'H':
+			result = heapSort(books);
+			break;
+		default:
+			result = mergeSort(books, 0, books.size() - 1);
+			break;
 		}
+		ArrayList<Integer> isbns = booksToISBN(result);
+		currentClient.setISBNList(isbns);
 	}
 
 	private ArrayList<Integer> booksToISBN(List<Book> books) {
@@ -210,10 +211,6 @@ public class Bookstore {
 			for (int j = 0; j < books.size() - i - 1; j++) {
 				int result = books.get(j).getShelf().compareTo(books.get(j + 1).getShelf());
 				if (result > 0) {
-					aux = books.get(j);
-					books.set(j, books.get(j + 1));
-					books.set(j + 1, aux);
-				} else if (result > 0) {
 					aux = books.get(j);
 					books.set(j, books.get(j + 1));
 					books.set(j + 1, aux);
@@ -298,13 +295,13 @@ public class Bookstore {
 	public String giveResult(char typeOfSort) throws MyQueueException, MyStackException {
 		String info = "";
 		ArrayList<Client> clientsDeparture = new ArrayList<>();
-		info+="Section 1 results:\n";
+		info += "Section 1 results:\n";
 		info += simulateFirstSection();
-		info+="------------------------------------\nSection 2 results:\n";
+		info += "------------------------------------\nSection 2 results:\n";
 		info += simulateSecondSection(typeOfSort);
-		info+="------------------------------------\nSection 3 results:\n";
-		info += simulateThirdSection()+"\n";
-		info+="------------------------------------\nSection 4 results:\n";
+		info += "------------------------------------\nSection 3 results:\n";
+		info += simulateThirdSection() + "\n";
+		info += "------------------------------------\nSection 4 results:\n";
 		// info += simulateFourthSection(clientsDeparture);
 		simulateFourthSection(clientsDeparture);
 		for (int i = 0; i < clientsDeparture.size(); i++)
@@ -316,7 +313,7 @@ public class Bookstore {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
 			Client currentClient = clients.get(i);
-			info += "Client " + (i + 1) + ":\n" + currentClient.getId() + "\n";
+			info += "\nClient " + (i + 1) + ":\n" + currentClient.getId() + "\n";
 			info += "List of Books:\n" + currentClient.getBookList();
 		}
 		return info;
@@ -326,11 +323,8 @@ public class Bookstore {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
 			Client currentClient = clients.get(i);
-			info += "Client " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
-		}
-		orderClientsBooks(orderBy);
-		for (int i = 0; i < clients.size(); i++) {
-			Client currentClient = clients.get(i);
+			info += "\nClient " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
+			orderClientsBooks(orderBy, currentClient);
 			info += "List of Books:\n" + currentClient.getBookList();
 		}
 		return info;
@@ -342,7 +336,11 @@ public class Bookstore {
 			Client currentClient = clients.get(i);
 			MyStack<Book> basket = currentClient.getBasket();
 			for (int j = 0; j < currentClient.getISBNList().size(); j++) {
-				basket.push(searchBook(currentClient.getISBNList().get(j)));
+				Book temp = searchBook(currentClient.getISBNList().get(j));
+				if (temp.getCopies() > 0) {
+					basket.push(temp);
+					temp.decreaseCopies();
+				}
 			}
 			currentClient.setTime(currentClient.getTime() + basket.getLength());
 		}
@@ -358,8 +356,8 @@ public class Bookstore {
 		});
 		for (int i = 0; i < clients.size(); i++) {
 			Client currentClient = clients.get(i);
-			info += "Client " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
-			info += "Basket:\n" + currentClient.getBasket().toString();
+			info += "\nClient " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
+			info += "Basket:\n" + currentClient.getBasket().toString() + "\n";
 		}
 		return info;
 	}
@@ -377,7 +375,6 @@ public class Bookstore {
 						if (cashiers[i].getCurrentClient().getBasket().isEmpty())
 							clientsDeparture.add(cashiers[i].sayByeToClient());
 					}
-					
 				}
 			}
 			stop=true;
@@ -386,8 +383,6 @@ public class Bookstore {
 					stop=false;
 				}
 			}
-			
-			
 		}
 	}
 }

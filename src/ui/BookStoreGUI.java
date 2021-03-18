@@ -342,7 +342,7 @@ public class BookStoreGUI {
     */
     @FXML
     public void appendBook(ActionEvent event) {
-        if (cbSortingAlgorithm.getValue() == null ||cbClientIdList.getValue() == null || txtISBNList2.getText().equals(""))
+        if (cbClientIdList.getValue() == null || txtISBNList2.getText().equals(""))
             showWarningAlert("Empty field", null, "Please fill the necessary information.");
         else {
             String clientId = cbClientIdList.getValue();
@@ -352,6 +352,8 @@ public class BookStoreGUI {
             else
                 btnDone.setDisable(false);
         }
+        txtISBNList2.setText("");
+        cbClientIdList.setValue(null);
     }
 
     /**
@@ -361,6 +363,9 @@ public class BookStoreGUI {
     */
     @FXML
     public void giveResult(ActionEvent event) {
+        if (cbSortingAlgorithm.getValue() == null && bookstore.getClients().size() == 0) {
+            showWarningAlert("Missing data", null, "Please fill the necessary information.");
+        }
         char typeOfSort = cbSortingAlgorithm.getValue().charAt(0);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
         fxmlLoader.setController(this);
