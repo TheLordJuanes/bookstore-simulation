@@ -34,7 +34,15 @@
             </Lighting>
          </effect>
       </Label>
-      <Button alignment="CENTER" defaultButton="true" layoutX="115.0" layoutY="166.0" mnemonicParsing="false" onAction="#startSimulation" prefHeight="52.0" prefWidth="370.0" text="START SIMULATION">
+      <Button alignment="CENTER" defaultButton="true" layoutX="115.0" layoutY="101.0" mnemonicParsing="false" onAction="#startSimulation" prefHeight="52.0" prefWidth="370.0" text="START SIMULATION">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <effect>
+            <SepiaTone />
+         </effect>
+      </Button>
+      <Button alignment="CENTER" defaultButton="true" layoutX="115.0" layoutY="243.0" mnemonicParsing="false" onAction="#uploadFile" prefHeight="52.0" prefWidth="370.0" text="CHOOSE FILE">
          <font>
             <Font size="36.0" />
          </font>

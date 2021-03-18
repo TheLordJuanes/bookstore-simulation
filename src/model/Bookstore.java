@@ -90,6 +90,20 @@ public class Bookstore {
 		}
 		return alreadyExist;
 	}
+	
+	public boolean addBook(int bIsbn, int numberOfCopies, int bookShelfPosition, double bookPrice) {
+		String bookShelf = shelves.get(bookShelfPosition).getIdentifier();
+		Book newBook = new Book(bIsbn, numberOfCopies, bookPrice, bookShelf);
+		boolean alreadyExist = checkBook(bIsbn);
+		boolean found = false;
+		for (int i = 0; i < shelves.size() && !found && !alreadyExist; i++) {
+			if (shelves.get(i).getIdentifier().equals(bookShelf)) {
+				shelves.get(i).insert(bIsbn, newBook);
+				found = true;
+			}
+		}
+		return alreadyExist;
+	}
 
 	public boolean checkBook(int isbn) {
 		boolean found = false;
@@ -299,7 +313,7 @@ public class Bookstore {
 		info += "------------------------------------\nSection 2 results:\n";
 		info += simulateSecondSection(typeOfSort);
 		info += "------------------------------------\nSection 3 results:\n";
-		info += simulateThirdSection() + "\n";
+		info += simulateThirdSection();
 		info += "------------------------------------\nSection 4 results:\n";
 		// info += simulateFourthSection(clientsDeparture);
 		simulateFourthSection(clientsDeparture);

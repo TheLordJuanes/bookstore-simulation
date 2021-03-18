@@ -6,6 +6,7 @@
 */
 package ui;
 
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Bookstore;
 import javafx.fxml.FXML;
@@ -20,6 +21,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import exceptions.MyQueueException;
 import exceptions.MyStackException;
@@ -420,5 +426,87 @@ public class BookStoreGUI {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+    
+
+    @FXML
+    void uploadFile(ActionEvent event) {
+    	showInformationAlert("Formato específico",
+				"Please make sure that the file you upload has the correct format",
+				"First line: The number of cashiers\n"
+						+ "Second line: The number os shelves\n");
+    	Stage stage = new Stage();
+		FileChooser fc = new FileChooser();
+		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Txt files", "*.txt"));
+		File file = fc.showOpenDialog(stage);
+		if(file != null) {
+			try {
+				FileReader fr = new FileReader (file);
+				BufferedReader br = new BufferedReader(fr);
+				int cashiers = Integer.valueOf(br.readLine());
+				int shelves = Integer.valueOf(br.readLine());
+				bookstore.addCashiers(cashiers);
+		        bookstore.createShelves(shelves);
+				for(int i=0; i<shelves; i++) {
+					int numberOfBooks = Integer.valueOf(br.readLine());
+					for(int j=0; j<numberOfBooks; j++) {
+						String[] line = br.readLine().split(" ");
+						int isbn = Integer.valueOf(line[0]);
+						double price = Double.valueOf(line[1]);
+						int copies = Integer.valueOf(line[2]);
+						bookstore.addBook(isbn, copies, i, price);
+					}
+					
+				}
+				int numberOfClients = Integer.valueOf(br.readLine());
+				for (int i = 0; i < numberOfClients; i++) {
+					String[] line = br.readLine().split(" ");
+					String clientId = line[0];
+					bookstore.addClient(clientId);
+					for (int j = 1; j < line.length; j++) {
+						int isbn = Integer.valueOf(line[j]);
+						bookstore.addBookToClient(clientId, isbn);
+					}
+				}
+				int orderCriteria = Integer.valueOf(br.readLine());
+				br.close();
+				char orderCriteriaL;
+				switch(orderCriteria) {
+				case 1:
+					orderCriteriaL = 'B';
+					break;
+				case 2:
+					orderCriteriaL = 'M';
+					break;
+				case 3:
+					orderCriteriaL = 'H';
+					break;
+				default:
+					throw new IOException("Incorrect type of sort");
+				}
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
+		        fxmlLoader.setController(this);
+	            Parent result = fxmlLoader.load();
+	            primaryStage.setTitle("Result");
+	            primaryStage.setScene(new Scene(result));
+	            textArea.setText(bookstore.giveResult(orderCriteriaL));
+	            primaryStage.show();
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MyQueueException mqe) {
+	            mqe.printStackTrace();
+	        } catch (MyStackException mse) {
+	            mse.printStackTrace();
+	        }
+			
+		}
     }
 }
