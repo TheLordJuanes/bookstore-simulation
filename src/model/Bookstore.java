@@ -298,9 +298,13 @@ public class Bookstore {
 	public String giveResult(char typeOfSort) throws MyQueueException, MyStackException {
 		String info = "";
 		ArrayList<Client> clientsDeparture = new ArrayList<>();
+		info+="Section 1 results:\n";
 		info += simulateFirstSection();
+		info+="------------------------------------\nSection 2 results:\n";
 		info += simulateSecondSection(typeOfSort);
-		info += simulateThirdSection();
+		info+="------------------------------------\nSection 3 results:\n";
+		info += simulateThirdSection()+"\n";
+		info+="------------------------------------\nSection 4 results:\n";
 		// info += simulateFourthSection(clientsDeparture);
 		simulateFourthSection(clientsDeparture);
 		for (int i = 0; i < clientsDeparture.size(); i++)
@@ -323,7 +327,10 @@ public class Bookstore {
 		for (int i = 0; i < clients.size(); i++) {
 			Client currentClient = clients.get(i);
 			info += "Client " + (i + 1) + ":\n" + currentClient.getTime() + " min\n" + currentClient.getId() + "\n";
-			orderClientsBooks(orderBy);
+		}
+		orderClientsBooks(orderBy);
+		for (int i = 0; i < clients.size(); i++) {
+			Client currentClient = clients.get(i);
 			info += "List of Books:\n" + currentClient.getBookList();
 		}
 		return info;
@@ -359,16 +366,28 @@ public class Bookstore {
 
 	public void simulateFourthSection(ArrayList<Client> clientsDeparture) throws MyQueueException, MyStackException {
 		MyQueue<Client> line = new MyQueue<>(clients);
-		while (line.getLength() > 0) {
+		boolean stop = false;
+		while (line.getLength() > 0 || !stop) {
 			for (int i = 0; i < cashiers.length; i++) {
-				if (cashiers[i].isFree())
+				if (cashiers[i].isFree() && line.getLength()>0)
 					cashiers[i].setCurrentClient(line.dequeue());
 				else {
-					cashiers[i].registerBook();
-					if (cashiers[i].getCurrentClient().getBasket().isEmpty())
-						clientsDeparture.add(cashiers[i].sayByeToClient());
+					if(cashiers[i].getCurrentClient()!=null) {
+						cashiers[i].registerBook();
+						if (cashiers[i].getCurrentClient().getBasket().isEmpty())
+							clientsDeparture.add(cashiers[i].sayByeToClient());
+					}
+					
 				}
 			}
+			stop=true;
+			for (int i = 0; i < cashiers.length && stop; i++) {
+				if(!cashiers[i].isFree()) {
+					stop=false;
+				}
+			}
+			
+			
 		}
 	}
 }

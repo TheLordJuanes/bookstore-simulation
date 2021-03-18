@@ -43,8 +43,11 @@ public class Cashier {
     }
 
     public void registerBook() throws MyStackException {
-        Book book = currentClient.getBasket().pop();
-        bag.push(book);
+    	if(!currentClient.getBasket().isEmpty()) {
+    		Book book = currentClient.getBasket().pop();
+            bag.push(book);
+    	}
+        
     }
 
     public void setCurrentClient(Client currentClient) {

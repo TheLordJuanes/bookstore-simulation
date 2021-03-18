@@ -8,6 +8,7 @@ package model;
 
 import java.util.ArrayList;
 import dataStructures.MyStack;
+import exceptions.MyStackException;
 
 public class Client {
 
@@ -87,8 +88,12 @@ public class Client {
         return bag;
     }
 
-	private double calculateTotal() {
+	private double calculateTotal() throws CloneNotSupportedException, MyStackException {
 		double result=0;
+		MyStack<Book> tempBag = bag.cloneThis();
+		while(tempBag.getLength()>0) {
+			result+=tempBag.pop().getPrice();
+		}
 		return result;
 	}
 
@@ -98,8 +103,14 @@ public class Client {
 
 	@Override
 	public String toString(){
-		String message=id +" " + calculateTotal()+"\n"+
-		bag.toString();
+		String message;
+		try {
+			message = id +" " + calculateTotal()+"\n"+ bag.toString()+"\n";
+		} catch (CloneNotSupportedException e) {
+			message=e.getMessage();
+		} catch (MyStackException e) {
+			message=e.getMessage();
+		}
 		return message;
 	}
 }

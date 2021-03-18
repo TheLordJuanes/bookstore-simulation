@@ -58,7 +58,7 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         try {
             copy = (MyStack<T>) this.clone();
             for (int i = length; i > 0; i--)
-                info += copy.pop().toString() + " ";
+                info += copy.pop() + " ";
         } catch (CloneNotSupportedException cnse) {
             cnse.printStackTrace();
         } catch (MyStackException mse) {
@@ -74,6 +74,7 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         else if (length == 1) {
             T result = top.getValue();
             top = null;
+            length--;
             return result;
         } else {
             Node<T> temp = top.getPrevNode();
@@ -108,4 +109,10 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     public boolean isEmpty() {
         return length == 0;
     }
+    
+    @SuppressWarnings("unchecked")
+	public MyStack<T> cloneThis() throws CloneNotSupportedException{
+    	return (MyStack<T>) this.clone();
+    }
+    
 }

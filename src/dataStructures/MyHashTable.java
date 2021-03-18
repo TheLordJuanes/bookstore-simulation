@@ -64,17 +64,21 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 
 	private HNode<K, V> privateSearch(K key) {
 		int index = hash((int) key);
-		boolean found = true;
+		boolean found = false;
 		HNode<K, V> temp = nodes[index];
 		if (temp != null) {
-			while (temp.getKey() != key && found) {
-				if (temp.getPrev() != null)
-					temp = temp.getNext();
-				else
-					found = false;
+			if(temp.getKey().equals(key)) {
+				found=true;
+			}else {
+				while (!temp.getKey().equals(key)  && !found) {
+					if (temp.getPrev() != null)
+						temp = temp.getNext();
+					else
+						found = true;
+				}
 			}
-		} else
-			found = false;
+			
+		}
 		if (found)
 			return temp;
 		else

@@ -38,7 +38,7 @@ public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
 
     public MyQueue(ArrayList<T> list) {
         length = 0;
-        for (int i = list.size() - 1; i >= 0; i--)
+        for (int i = 0; i < list.size(); i++)
             this.enqueue(list.get(i));
     }
 
