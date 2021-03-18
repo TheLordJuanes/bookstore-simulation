@@ -105,29 +105,29 @@ public class BookStoreGUI {
         bookstore = new Bookstore();
 	}
 
-	public void showErrorAlert(String title, String header, String content) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-	}
+    public void showErrorAlert(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
-	public void showWarningAlert(String title, String header, String content) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-	}
+    public void showWarningAlert(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
-	public void showInformationAlert(String title, String header, String content) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-	}
+    public void showInformationAlert(String title, String header, String content) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
     /**
      * Name: startSimulation
@@ -409,16 +409,16 @@ public class BookStoreGUI {
     @FXML
     public void reload(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-simulation.fxml"));
-		BookStoreGUI bookStoreGUI = new BookStoreGUI(primaryStage);
-		fxmlLoader.setController(bookStoreGUI);
-		Parent root;
-		try {
-			root = fxmlLoader.load();
-			primaryStage.setScene(new Scene(root));
-			primaryStage.setTitle("BookStore S.A.S.");
-			primaryStage.show();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
+        BookStoreGUI bookStoreGUI = new BookStoreGUI(primaryStage);
+        fxmlLoader.setController(bookStoreGUI);
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+            primaryStage.setScene(new Scene(root));
+            primaryStage.setTitle("BookStore S.A.S.");
+            primaryStage.show();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 }

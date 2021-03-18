@@ -14,14 +14,14 @@ public class Client {
 
 	// -----------------------------------------------------------------
 	// Attributes
-    // -----------------------------------------------------------------
+	// -----------------------------------------------------------------
 
 	private String id;
 	private int time;
 
 	// -----------------------------------------------------------------
 	// Relations
-    // -----------------------------------------------------------------
+	// -----------------------------------------------------------------
 
 	private ArrayList<Integer> ISBNList;
 	private MyStack<Book> basket;
@@ -29,7 +29,7 @@ public class Client {
 
 	// -----------------------------------------------------------------
 	// Methods
-    // -----------------------------------------------------------------
+	// -----------------------------------------------------------------
 
 	/**
 	 * Name: Client
@@ -47,10 +47,6 @@ public class Client {
 
 	public String getId() {
 		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public int getTime() {
@@ -80,36 +76,31 @@ public class Client {
 		return basket;
 	}
 
-    public void setBasket(MyStack<Book> basket) {
-        this.basket = basket;
-    }
+	public void setBasket(MyStack<Book> basket) {
+		this.basket = basket;
+	}
 
-    public MyStack<Book> getBag() {
-        return bag;
-    }
+	public void setBag(MyStack<Book> bag) {
+		this.bag = bag;
+	}
 
 	private double calculateTotal() throws CloneNotSupportedException, MyStackException {
-		double result=0;
+		double result = 0;
 		MyStack<Book> tempBag = bag.cloneThis();
-		while(tempBag.getLength()>0) {
-			result+=tempBag.pop().getPrice();
-		}
+		while (tempBag.getLength() > 0)
+			result += tempBag.pop().getPrice();
 		return result;
 	}
 
-    public void setBag(MyStack<Book> bag) {
-        this.bag = bag;
-    }
-
 	@Override
-	public String toString(){
+	public String toString() {
 		String message;
 		try {
-			message = id +" " + calculateTotal()+"\n"+ bag.toString()+"\n";
+			message = id + " " + calculateTotal() + "\n" + bag.toString() + "\n";
 		} catch (CloneNotSupportedException e) {
-			message=e.getMessage();
+			message = e.getMessage();
 		} catch (MyStackException e) {
-			message=e.getMessage();
+			message = e.getMessage();
 		}
 		return message;
 	}

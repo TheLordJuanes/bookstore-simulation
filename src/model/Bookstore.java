@@ -30,9 +30,8 @@ public class Bookstore {
 	// -----------------------------------------------------------------
 
 	/**
-	 * Name: Bookstore
-	 * Constructor method of a bookstore.
-	*/
+	 * Name: Bookstore Constructor method of a bookstore.
+	 */
 	public Bookstore() {
 		shelves = new ArrayList<>();
 		clients = new ArrayList<>();
@@ -49,7 +48,7 @@ public class Bookstore {
 			cashiers[i] = new Cashier();
 	}
 
-	public int getNumberOfCashiers(){
+	public int getNumberOfCashiers() {
 		return cashiers.length;
 	}
 
@@ -66,7 +65,7 @@ public class Bookstore {
 		return found;
 	}
 
-	public void emptyClients(){
+	public void emptyClients() {
 		clients.clear();
 	}
 
@@ -161,7 +160,7 @@ public class Bookstore {
 		return isbns;
 	}
 
-	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) {
+	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
 		if (l < r) {
 			int m = l + (r - l) / 2;
 			mergeSort(books, l, m);
@@ -171,7 +170,7 @@ public class Bookstore {
 		return books;
 	}
 
-	private void merge(ArrayList<Book> books, int l, int m, int r) {
+	private void merge(ArrayList<Book> books, int l, int m, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
 		int n1 = m - l + 1;
 		int n2 = r - m;
 		ArrayList<Book> L = new ArrayList<Book>();
@@ -220,7 +219,7 @@ public class Bookstore {
 		return books;
 	}
 
-	private ArrayList<Book> heapSort(ArrayList<Book> books) {
+	private ArrayList<Book> heapSort(ArrayList<Book> books) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 		int n = books.size();
 		for (int i = n / 2 - 1; i >= 0; i--)
 			heapify(books, n, i);
@@ -233,7 +232,7 @@ public class Bookstore {
 		return books;
 	}
 
-	private void heapify(ArrayList<Book> books, int n, int i) {
+	private void heapify(ArrayList<Book> books, int n, int i) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 		int largest = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
@@ -367,20 +366,20 @@ public class Bookstore {
 		boolean stop = false;
 		while (line.getLength() > 0 || !stop) {
 			for (int i = 0; i < cashiers.length; i++) {
-				if (cashiers[i].isFree() && line.getLength()>0)
+				if (cashiers[i].isFree() && line.getLength() > 0)
 					cashiers[i].setCurrentClient(line.dequeue());
 				else {
-					if(cashiers[i].getCurrentClient()!=null) {
+					if (cashiers[i].getCurrentClient() != null) {
 						cashiers[i].registerBook();
 						if (cashiers[i].getCurrentClient().getBasket().isEmpty())
 							clientsDeparture.add(cashiers[i].sayByeToClient());
 					}
 				}
 			}
-			stop=true;
+			stop = true;
 			for (int i = 0; i < cashiers.length && stop; i++) {
-				if(!cashiers[i].isFree()) {
-					stop=false;
+				if (!cashiers[i].isFree()) {
+					stop = false;
 				}
 			}
 		}

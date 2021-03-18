@@ -11,25 +11,25 @@ import exceptions.MyStackException;
 public class MyStack<T> implements MyStackInterface<T>, Cloneable {
 
     // -----------------------------------------------------------------
-	// Attributes
+    // Attributes
     // -----------------------------------------------------------------
 
     private int length;
 
     // -----------------------------------------------------------------
-	// Relations
+    // Relations
     // -----------------------------------------------------------------
 
     private Node<T> top;
 
     // -----------------------------------------------------------------
-	// Methods
+    // Methods
     // -----------------------------------------------------------------
 
     /**
-	 * Name: MyStack
-	 * Constructor method of a stack.
-	*/
+     * Name: MyStack
+     * Constructor method of a stack.
+    */
     public MyStack() {
         length = 0;
     }
@@ -109,10 +109,9 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     public boolean isEmpty() {
         return length == 0;
     }
-    
+
     @SuppressWarnings("unchecked")
-	public MyStack<T> cloneThis() throws CloneNotSupportedException{
-    	return (MyStack<T>) this.clone();
+    public MyStack<T> cloneThis() throws CloneNotSupportedException {
+        return (MyStack<T>) this.clone();
     }
-    
 }

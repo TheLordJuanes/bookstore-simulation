@@ -12,14 +12,14 @@ import exceptions.MyStackException;
 public class Cashier {
 
     // -----------------------------------------------------------------
-	// Relations
+    // Relations
     // -----------------------------------------------------------------
 
     private Client currentClient;
     private MyStack<Book> bag;
 
     // -----------------------------------------------------------------
-	// Methods
+    // Methods
     // -----------------------------------------------------------------
 
     public Cashier() {
@@ -43,11 +43,10 @@ public class Cashier {
     }
 
     public void registerBook() throws MyStackException {
-    	if(!currentClient.getBasket().isEmpty()) {
-    		Book book = currentClient.getBasket().pop();
+        if (!currentClient.getBasket().isEmpty()) {
+            Book book = currentClient.getBasket().pop();
             bag.push(book);
-    	}
-        
+        }
     }
 
     public void setCurrentClient(Client currentClient) {

@@ -19,7 +19,7 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	// Relations
 	// -----------------------------------------------------------------
 
-	private HNode<K,V>[] nodes;
+	private HNode<K, V>[] nodes;
 
 	// -----------------------------------------------------------------
 	// Methods
@@ -30,12 +30,11 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	 * Constructor method of a hash table.
 	 * @param identifier - shelf's identifier - identifier = String, identifier != null, identifier != ""
 	 * @param bookNum - number of book in a shelf - bookNum = int, bookNum != null, bookNum != 0
-	 */
+	*/
 	@SuppressWarnings("unchecked")
 	public MyHashTable() {
 		nodes = (HNode<K, V>[]) new HNode[ARRAY_SIZE];
 	}
-
 
 	@Override
 	public void insert(K key, V value) {

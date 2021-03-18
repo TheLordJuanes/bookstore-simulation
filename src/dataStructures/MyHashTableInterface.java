@@ -13,5 +13,6 @@ public interface MyHashTableInterface<K extends Number, V> {
 	public V search(K key);
 
 	public void delete(K key);
+
 	public boolean isEmpty();
 }
