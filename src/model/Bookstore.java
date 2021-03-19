@@ -106,7 +106,7 @@ public class Bookstore {
 		return alreadyExist;
 	}
 
-	public boolean checkBook(int isbn) {
+	private boolean checkBook(int isbn) {
 		boolean found = false;
 		for (int i = 0; i < shelves.size() && !found; i++) {
 			if (shelves.get(i).search(isbn) != null)
@@ -154,15 +154,15 @@ public class Bookstore {
 		ArrayList<Book> result;
 		ArrayList<Book> books = createListBooks(currentClient.getISBNList());
 		switch (sortingAlgorithm) {
-		case 'B':
-			result = bubbleSort(books);
-			break;
-		case 'H':
-			result = heapSort(books);
-			break;
-		default:
-			result = mergeSort(books, 0, books.size() - 1);
-			break;
+			case 'B':
+				result = bubbleSort(books);
+				break;
+			case 'H':
+				result = heapSort(books);
+				break;
+			default:
+				result = mergeSort(books, 0, books.size() - 1);
+				break;
 		}
 		ArrayList<Integer> isbns = booksToISBN(result);
 		currentClient.setISBNList(isbns);
@@ -228,6 +228,13 @@ public class Bookstore {
 					aux = books.get(j);
 					books.set(j, books.get(j + 1));
 					books.set(j + 1, aux);
+				} else if (result == 0) {
+					result = books.get(j).getIsbn() - books.get(j + 1).getIsbn();
+					if (result > 0) {
+						aux = books.get(j);
+						books.set(j, books.get(j + 1));
+						books.set(j + 1, aux);
+					}
 				}
 			}
 		}
