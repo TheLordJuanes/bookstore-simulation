@@ -189,7 +189,13 @@ public class Bookstore {
 		int n1 = m - l + 1;
 		int n2 = r - m;
 		ArrayList<Book> L = new ArrayList<Book>();
+		for (int i = 0; i < n1; i++) {
+			L.add(null);
+		}
 		ArrayList<Book> R = new ArrayList<Book>();
+		for (int i = 0; i < n2; i++) {
+			R.add(null);
+		}
 		for (int i = 0; i < n1; ++i)
 			L.set(i, books.get(l + 1));
 		for (int j = 0; j < n2; ++j) {
