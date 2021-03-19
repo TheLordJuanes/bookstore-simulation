@@ -30,8 +30,9 @@ public class Bookstore {
 	// -----------------------------------------------------------------
 
 	/**
-	 * Name: Bookstore Constructor method of a bookstore.
-	 */
+	 * Name: Bookstore
+	 * Constructor method of a bookstore.
+	*/
 	public Bookstore() {
 		shelves = new ArrayList<>();
 		clients = new ArrayList<>();
@@ -90,7 +91,7 @@ public class Bookstore {
 		}
 		return alreadyExist;
 	}
-	
+
 	public boolean addBook(int bIsbn, int numberOfCopies, int bookShelfPosition, double bookPrice) {
 		String bookShelf = shelves.get(bookShelfPosition).getIdentifier();
 		Book newBook = new Book(bIsbn, numberOfCopies, bookPrice, bookShelf);
@@ -392,9 +393,8 @@ public class Bookstore {
 			}
 			stop = true;
 			for (int i = 0; i < cashiers.length && stop; i++) {
-				if (!cashiers[i].isFree()) {
+				if (!cashiers[i].isFree())
 					stop = false;
-				}
 			}
 		}
 	}

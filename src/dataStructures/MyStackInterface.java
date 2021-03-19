@@ -15,7 +15,7 @@ public interface MyStackInterface<T> {
     // Post: If stack is not empty, the item on the top is removed from the stack. Throws StackException if the stack is empty.
 
     public void push(T value);
-    // Pre: item is the new item to be added.
+    // Pre: new item to be added.
     // Post: If insertion is successful, item is on the top of the stack. Throws StackException if the insertion is not successful.
 
     public T peek() throws MyStackException;

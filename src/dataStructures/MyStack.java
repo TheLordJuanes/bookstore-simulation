@@ -38,18 +38,6 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public Node<T> getTop() {
-        return top;
-    }
-
-    public void setTop(Node<T> top) {
-        this.top = top;
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public String toString() {

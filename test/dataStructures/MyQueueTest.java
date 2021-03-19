@@ -1,13 +1,12 @@
-package model;
+package dataStructures;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-class BookstoreTest {
+class MyQueueTest {
 
 	@Test
-	void test() {
+	public void test() {
 		fail("Not yet implemented");
 	}
 }

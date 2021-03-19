@@ -11,7 +11,7 @@ import exceptions.MyQueueException;
 public interface MyQueueInterface<T> {
 
     public void enqueue(T value);
-    // Pre:item is the new item to be added.
+    // Pre: new item to be added.
     // Post: If insertion is successful, item is at the end of the queue. Throws QueueException if the item cannot be added to the queue.
 
     public boolean isEmpty();
