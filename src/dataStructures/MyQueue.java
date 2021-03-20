@@ -62,23 +62,6 @@ public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
         this.back = back;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public String toString() {
-        String info = "";
-        MyQueue<T> copy;
-        try {
-            copy = (MyQueue<T>) this.clone();
-            for (int i = 0; i < length; i++)
-                info += copy.dequeue() + " ";
-        } catch (CloneNotSupportedException cnse) {
-            cnse.printStackTrace();
-        } catch (MyQueueException mqe) {
-            mqe.printStackTrace();
-        }
-        return info;
-    }
-
     @Override
     public void enqueue(T value) {
         Node<T> newNode = new Node<T>(value);

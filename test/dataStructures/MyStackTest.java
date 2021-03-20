@@ -141,7 +141,7 @@ class MyStackTest {
 	@Test
 	public void testToString() {
 		setup3();
-		assertEquals("111 333 ", stack.toString(), "The client information isn't the same one.");
+		assertEquals("111 333 ", stack.toString());
 	}
 
 	@Test

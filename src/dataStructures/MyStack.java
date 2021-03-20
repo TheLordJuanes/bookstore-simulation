@@ -39,7 +39,6 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @SuppressWarnings("unchecked")
-    @Override
     public String toString() {
         String info = "";
         MyStack<T> copy;
