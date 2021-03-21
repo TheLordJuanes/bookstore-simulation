@@ -6,7 +6,7 @@
 */
 package dataStructures;
 
-public class HNode<K, V> {
+public class HNode<K extends Number, V> {
 
 	// -----------------------------------------------------------------
 	// Attributes

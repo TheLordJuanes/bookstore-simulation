@@ -196,18 +196,35 @@ class MyHashTableTest {
 	@Test
 	public void testDelete() {
 		setup1();
-		try {
-			tableTest.delete(1);
-		} catch (Exception e) {
-			fail();
-		}
+		assertFalse(tableTest.delete(1));
 		assertTrue(tableTest.isEmpty());
+
 		setup2();
 		assertFalse(tableTest.isEmpty());
-		try {
-			tableTest.delete(441);
-		} catch (Exception e) {
-			fail();
-		}
+		assertTrue(tableTest.delete(441));
+		assertNull(tableTest.search(441));
+		assertTrue(tableTest.isEmpty());
+
+		setup3();
+		assertTrue(tableTest.delete(441));
+		assertNull(tableTest.search(441));
+		assertFalse(tableTest.isEmpty());
+		setup3();
+		assertTrue(tableTest.delete(159));
+		assertNull(tableTest.search(159));
+		assertFalse(tableTest.isEmpty());
+
+		setup4();// 441 229
+		assertTrue(tableTest.delete(441));
+		assertNull(tableTest.search(441));
+		assertFalse(tableTest.isEmpty());
+		assertNull(tableTest.privateSearch(229).getPrev());
+		assertNull(tableTest.privateSearch(229).getNext());
+		setup4();
+		assertTrue(tableTest.delete(229));
+		assertNull(tableTest.search(229));
+		assertFalse(tableTest.isEmpty());
+		assertNull(tableTest.privateSearch(441).getPrev());
+		assertNull(tableTest.privateSearch(441).getNext());
 	}
 }

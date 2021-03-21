@@ -1,0 +1,116 @@
+Section 1 results:
+
+Client 1:
+1627
+List of Books:
+287
+612
+
+Client 2:
+3456
+List of Books:
+612
+333
+287
+465
+
+Client 3:
+3219
+List of Books:
+287
+
+Client 4:
+3311
+List of Books:
+767
+287
+229
+971
+
+Client 5:
+2100
+List of Books:
+331
+------------------------------------
+Section 2 results:
+
+Client 1:
+1 min
+1627
+List of Books:
+612
+287
+
+Client 2:
+2 min
+3456
+List of Books:
+465
+612
+333
+287
+
+Client 3:
+3 min
+3219
+List of Books:
+287
+
+Client 4:
+4 min
+3311
+List of Books:
+971
+229
+287
+767
+
+Client 5:
+5 min
+2100
+List of Books:
+331
+------------------------------------
+Section 3 results:
+
+Client 1:
+3 min
+1627
+Basket:
+287 612 
+
+Client 2:
+4 min
+3219
+Basket:
+287 
+
+Client 3:
+6 min
+3456
+Basket:
+287 333 612 465 
+
+Client 4:
+6 min
+2100
+Basket:
+331 
+
+Client 5:
+8 min
+3311
+Basket:
+767 287 229 971 
+------------------------------------
+Section 4 results:
+3219 65000.0
+287 
+1627 145000.0
+612 287 
+2100 17000.0
+331 
+3456 248000.0
+465 612 333 287 
+3311 203000.0
+971 229 287 767 

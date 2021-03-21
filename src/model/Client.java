@@ -80,10 +80,23 @@ public class Client {
 		this.basket = basket;
 	}
 
+	public MyStack<Book> getBag() {
+		return bag;
+	}
+
 	public void setBag(MyStack<Book> bag) {
 		this.bag = bag;
 	}
 
+	/**
+	 * Name: calculateTotal
+	 * Method used to calculate the total price of the books to buy.
+	 * <b>pre: </b> Books' bag of the client already initialized. <br>
+	 * <b>post: </b> The total price of the books to buy has been calculated. <br>
+	 * @throws CloneNotSupportedException - to indicate that the object's class doesn't implement the Cloneable interface.
+	 * @throws MyStackException - when trying to access and/or delete an element in an empty stack.
+	 * @return A double representing the total price of the books to buy.
+	*/
 	private double calculateTotal() throws CloneNotSupportedException, MyStackException {
 		double result = 0;
 		MyStack<Book> tempBag = bag.cloneThis();
@@ -92,15 +105,19 @@ public class Client {
 		return result;
 	}
 
+	/** Name: toString
+	 * Method rewritten used to print a String that textually represents an object of from Client class with its elements.
+	 * @return A String representing information of a client.
+  	*/
 	@Override
 	public String toString() {
 		String message;
 		try {
 			message = id + " " + calculateTotal() + "\n" + bag.toString() + "\n";
-		} catch (CloneNotSupportedException e) {
-			message = e.getMessage();
-		} catch (MyStackException e) {
-			message = e.getMessage();
+		} catch (CloneNotSupportedException cnse) {
+			message = cnse.getMessage();
+		} catch (MyStackException mse) {
+			message = mse.getMessage();
 		}
 		return message;
 	}

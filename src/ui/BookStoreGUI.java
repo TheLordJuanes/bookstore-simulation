@@ -311,7 +311,7 @@ public class BookStoreGUI {
         alert.setHeaderText(null);
         alert.setContentText("If you go back, the clients' information will be lost.");
         if (alert.showAndWait().filter(t -> t == ButtonType.OK).isPresent()) {
-            bookstore.emptyClients();
+            bookstore.getClients().clear();
             startSimulation(event);
         }
         txtNumberOfCashiers.setText(String.valueOf(bookstore.getNumberOfCashiers()));

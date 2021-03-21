@@ -87,14 +87,16 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 	}
 
 	@Override
-	public void delete(K key) {
+	public boolean delete(K key) {
 		HNode<K, V> nodeToDelete = privateSearch(key);
 		if (nodeToDelete != null) {
 			HNode<K, V> prev = nodeToDelete.getPrev();
 			HNode<K, V> next = nodeToDelete.getNext();
 			if (prev == null) {
 				int index = hash((int) key);
-				next.setPrev(null);
+				if (next != null) {
+					next.setPrev(null);
+				}
 				nodes[index] = next;
 			} else {
 				if (next == null)
@@ -104,10 +106,12 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 					next.setPrev(prev);
 				}
 			}
+			return true;
 		}
+		return false;
 	}
 
-	private static int hash(int k) {
+	private int hash(int k) {
 		int index = (int) Math.floor(ARRAY_SIZE * ((k * ARBITRARY_NUMBER) % 1));
 		return index;
 	}

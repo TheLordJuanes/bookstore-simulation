@@ -24,7 +24,6 @@ public class Bookstore {
 	private ArrayList<Shelf<Integer, Book>> shelves;
 	private ArrayList<Client> clients;
 	private Cashier[] cashiers;
-	private ArrayList<Book> mergeAndHeap;
 
 	// -----------------------------------------------------------------
 	// Methods
@@ -65,10 +64,6 @@ public class Bookstore {
 			}
 		}
 		return found;
-	}
-
-	public void emptyClients() {
-		clients.clear();
 	}
 
 	public boolean areShelvesEmpty() {
@@ -141,7 +136,7 @@ public class Bookstore {
 		return exist;
 	}
 
-	public ArrayList<Book> createListBooks(ArrayList<Integer> isbnList) {
+	private ArrayList<Book> createListBooks(ArrayList<Integer> isbnList) {
 		ArrayList<Book> books = new ArrayList<Book>();
 		for (int i = 0; i < isbnList.size(); i++) {
 			Book found = searchBook(isbnList.get(i));
@@ -155,24 +150,18 @@ public class Bookstore {
 		ArrayList<Book> result;
 		ArrayList<Book> books = createListBooks(currentClient.getISBNList());
 		switch (sortingAlgorithm) {
-		case 'B':
-			result = bubbleSort(books);
-			ArrayList<Integer> isbns = booksToISBN(result);
-			currentClient.setISBNList(isbns);
-			break;
-		case 'H':
-			mergeAndHeap = books;
-			heapSort();
-			ArrayList<Integer> isbns1 = booksToISBN(mergeAndHeap);
-			currentClient.setISBNList(isbns1);
-			break;
-		default:
-			mergeAndHeap = books;
-			mergeSort(0, books.size() - 1);
-			ArrayList<Integer> isbns2 = booksToISBN(mergeAndHeap);
-			currentClient.setISBNList(isbns2);
-			break;
+			case 'B':
+				result = bubbleSort(books);
+				break;
+			case 'H':
+				result = heapSort(books);
+				break;
+			default:
+				result = mergeSort(books, 0, books.size() - 1);
+				break;
 		}
+		ArrayList<Integer> isbns = booksToISBN(result);
+		currentClient.setISBNList(isbns);
 	}
 
 	private ArrayList<Integer> booksToISBN(List<Book> books) {
@@ -182,13 +171,14 @@ public class Bookstore {
 		return isbns;
 	}
 
-	private void mergeSort(int l, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
+	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
 		if (l < r) {
 			int m = l + (r - l) / 2;
-			mergeSort(l, m);
-			mergeSort(m + 1, r);
-			merge(mergeAndHeap, l, m, r);
+			mergeSort(books, l, m);
+			mergeSort(books, m + 1, r);
+			merge(books, l, m, r);
 		}
+		return books;
 	}
 
 	private ArrayList<Book> merge(ArrayList<Book> arr, int l, int m, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
@@ -258,32 +248,34 @@ public class Bookstore {
 		return books;
 	}
 
-	private void heapSort() { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
-		int n = mergeAndHeap.size();
+	private ArrayList<Book> heapSort(ArrayList<Book> books) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+		int n = books.size();
 		for (int i = n / 2 - 1; i >= 0; i--)
-			heapify(mergeAndHeap, n, i);
+			heapify(books, n, i);
 		for (int i = n - 1; i > 0; i--) {
-			Book temp = mergeAndHeap.get(0);
-			mergeAndHeap.set(0, mergeAndHeap.get(i));
-			mergeAndHeap.set(i, temp);
-			heapify(mergeAndHeap, i, 0);
+			Book temp = books.get(0);
+			books.set(0, books.get(i));
+			books.set(i, temp);
+			heapify(books, i, 0);
 		}
+		return books;
 	}
 
-	private void heapify(ArrayList<Book> books, int n, int i) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	private ArrayList<Book> heapify(ArrayList<Book> books, int n, int i) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 		int largest = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
-		if (l < n && mergeAndHeap.get(l).getShelf().compareTo(mergeAndHeap.get(largest).getShelf()) > 0)
+		if (l < n && books.get(l).getShelf().compareTo(books.get(largest).getShelf()) > 0)
 			largest = l;
-		if (r < n && mergeAndHeap.get(r).getShelf().compareTo(mergeAndHeap.get(largest).getShelf()) > 0)
+		if (r < n && books.get(r).getShelf().compareTo(books.get(largest).getShelf()) > 0)
 			largest = r;
 		if (largest != i) {
-			Book swap = mergeAndHeap.get(i);
-			mergeAndHeap.set(i, mergeAndHeap.get(largest));
-			mergeAndHeap.set(largest, swap);
-			heapify(mergeAndHeap, n, largest);
+			Book swap = books.get(i);
+			books.set(i, books.get(largest));
+			books.set(largest, swap);
+			heapify(books, n, largest);
 		}
+		return books;
 	}
 
 	public void createShelves(int numberOfS) {

@@ -20,11 +20,21 @@ public class Shelf<K extends Number, V> extends MyHashTable<K, V> {
 	// Methods
     // -----------------------------------------------------------------
 
+    /**
+	 * Name: Shelf
+	 * Constructor method of a shelf.
+	 * @param identifier - shelf's identifier - identifier = String, id != null, id != ""
+	*/
     public Shelf(String identifier) {
         super();
         this.identifier = identifier;
     }
 
+    /**
+	 * Name: getIdentifier
+	 * Method used to get the shelf's identifier.
+	 * @return A String representing the shelf's identifier.
+	*/
     public String getIdentifier() {
         return identifier;
     }
