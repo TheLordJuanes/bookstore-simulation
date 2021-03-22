@@ -265,10 +265,22 @@ public class Bookstore {
 		int largest = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
-		if (l < n && books.get(l).getShelf().compareTo(books.get(largest).getShelf()) > 0)
-			largest = l;
-		if (r < n && books.get(r).getShelf().compareTo(books.get(largest).getShelf()) > 0)
-			largest = r;
+		if (l < n) {
+			if (books.get(l).getShelf().compareTo(books.get(largest).getShelf()) > 0)
+				largest = l;
+			else if (books.get(l).getShelf().compareTo(books.get(largest).getShelf()) == 0) {
+				if (books.get(l).getIsbn() - (books.get(largest).getIsbn()) > 0)
+				largest = l;
+			}
+		}
+		if (r < n) {
+			if (books.get(r).getShelf().compareTo(books.get(largest).getShelf()) > 0)
+				largest = r;
+			else if (books.get(r).getShelf().compareTo(books.get(largest).getShelf()) == 0) {
+				if (books.get(r).getIsbn() - (books.get(largest).getIsbn()) > 0)
+					largest = r;
+			}
+		}
 		if (largest != i) {
 			Book swap = books.get(i);
 			books.set(i, books.get(largest));
@@ -324,6 +336,10 @@ public class Bookstore {
 	public String giveResult(char typeOfSort) throws MyQueueException, MyStackException {
 		String info = "";
 		ArrayList<Client> clientsDeparture = new ArrayList<>();
+		for (int i = 0; i < clients.size(); i++) {
+			if (clients.get(i).getISBNList().size() == 0)
+				clients.remove(i);
+		}
 		info += "Section 1 results:\n";
 		info += simulateFirstSection();
 		info += "------------------------------------\nSection 2 results:\n";
@@ -331,7 +347,6 @@ public class Bookstore {
 		info += "------------------------------------\nSection 3 results:\n";
 		info += simulateThirdSection();
 		info += "------------------------------------\nSection 4 results:\n";
-		// info += simulateFourthSection(clientsDeparture);
 		simulateFourthSection(clientsDeparture);
 		for (int i = 0; i < clientsDeparture.size(); i++)
 			info += clientsDeparture.get(i).toString();

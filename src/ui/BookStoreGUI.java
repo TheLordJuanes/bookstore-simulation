@@ -375,6 +375,7 @@ public class BookStoreGUI {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result.fxml"));
         fxmlLoader.setController(this);
         try {
+            showInformationAlert("Empty clients deleted", null, "Any clients who did not buy a book will not be shown in results.");
             Parent result = fxmlLoader.load();
             primaryStage.setTitle("Result");
             primaryStage.setScene(new Scene(result));
@@ -429,7 +430,14 @@ public class BookStoreGUI {
 
     @FXML
     public void uploadFile(ActionEvent event) {
-        showInformationAlert("Specific format", "Please make sure that the file you upload has the correct format", "First line: The number of cashiers\n" + "Second line: The number os shelves\n");
+        showInformationAlert("Specific format", "Please make sure that the file you upload has the correct format.\nIf there is a client that does not buy books, so the client will be deleted.",
+        "First line: The number of cashiers\n" +
+        "Second line: The number os shelves\n" +
+        "Then enter the number of books that each shelf has\n"+
+        "For each book entered the data have to be in this way: ISBN Cost-of-the-book Units-available\n"+
+        "When all the books have been added in its respective shelf so enter the number of clients\n"+
+        "For each client entered the data have to be in this way: Client-id ISBN-of-the-books-bought-by-the-client-separated-by-one-space\n"+
+        "The last line is a number that indicates the ordering method that will be used in the book lists:\n 1 --> Bubble sort\n 2 --> Merge sort\n 3 --> Heap sort\n");
         Stage stage = new Stage();
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Txt files", "*.txt"));
