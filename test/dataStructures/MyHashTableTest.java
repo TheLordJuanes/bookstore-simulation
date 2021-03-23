@@ -1,3 +1,9 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
 package dataStructures;
 
 import model.Book;
@@ -134,7 +140,6 @@ class MyHashTableTest {
 		assertEquals("A", foundBook1.getShelf());
 		assertNull(tableTest.privateSearch(441).getPrev());
 		assertNull(tableTest.privateSearch(441).getNext());
-
 	}
 
 	@Test

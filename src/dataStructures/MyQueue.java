@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -91,12 +91,12 @@ public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
         this.back = back;
     }
 
-    @Override
     /**
      * Name: enqueue
      * adds a new element to the queue
      * @param value the element to be stored
      */
+    @Override
     public void enqueue(T value) {
         Node<T> newNode = new Node<T>(value);
         if (isEmpty()) {
@@ -110,23 +110,22 @@ public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
         length++;
     }
 
-    
-    @Override
     /**
      * Name: isEmpty
      * @return true if the queue is empty, false otherwise
      */
+    @Override
     public boolean isEmpty() {
         return length == 0;
     }
 
-    @Override
     /**
      * Name: getFront
      * gets the front
      * @throws MyQueueException if the queue is empty
      * @return front
      */
+    @Override
     public T getFront() throws MyQueueException {
         if (isEmpty())
             throw new MyQueueException("There is nothing in the queue");
@@ -134,13 +133,13 @@ public class MyQueue<T> implements MyQueueInterface<T>, Cloneable {
             return front.getValue();
     }
 
-    @Override
     /**
      * Name: dequeue
      * retrieves the front and removes it from the queue
      * @throws MyQueueException if the queue is empty
      * @return front
      */
+    @Override
     public T dequeue() throws MyQueueException {
         if (isEmpty())
             throw new MyQueueException("There is nothing in the queue");

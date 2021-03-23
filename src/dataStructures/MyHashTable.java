@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -104,13 +104,13 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 			return null;
 	}
 
-	@Override
 	/**
 	 * Name: delete
 	 * deletes a Node from the if the key matches
 	 * @param key an object of type <K>
 	 * @return true if the object was successfully removed, false otherwise
 	 */
+	@Override
 	public boolean delete(K key) {
 		HNode<K, V> nodeToDelete = privateSearch(key);
 		if (nodeToDelete != null) {
@@ -137,7 +137,7 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 
 	/**
 	 * Name: hash
-	 * hashes any positive integer value to an integer between 0 and ARRAY_SIZE, inclusive 
+	 * hashes any positive integer value to an integer between 0 and ARRAY_SIZE, inclusive
 	 * @param k the int to be hashed
 	 * @return an int between 0 and ARRAY_SIZE, inclusive
 	 */
@@ -146,11 +146,11 @@ public class MyHashTable<K extends Number, V> implements MyHashTableInterface<K,
 		return index;
 	}
 
-	@Override
 	/**
 	 * Name: isEmpty
-	 * @return true if there are no values stored in the table, false otherwise 
+	 * @return true if there are no values stored in the table, false otherwise
 	 */
+	@Override
 	public boolean isEmpty() {
 		boolean result = true;
 		for (int i = 0; i < nodes.length; i++) {

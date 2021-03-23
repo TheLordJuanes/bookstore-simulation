@@ -76,7 +76,7 @@ Note: The order in which the clients' books are packed is given taking into acco
 
 ## Documentation 📃
 
-Check the engineering method, the functional requirements, the UML Class Diagram design, the data structures TAD design, the JUnit tests design, and the time and spatial complexity analysis of algorithms [here](docs)
+Check the engineering method, the functional requirements, the UML Class Diagram design, the data structures TAD design, the JUnit tests design, and the time and spatial complexity analysis of algorithms [here](docs/EngineeringMethod.pdf)
 
 ## Technical conditions 🛠️
 

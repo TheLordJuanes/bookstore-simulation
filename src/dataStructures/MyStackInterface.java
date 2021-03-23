@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -17,14 +17,14 @@ public interface MyStackInterface<T> {
      * @return the element at the top
      */
     public T pop() throws MyStackException;
-    
+
     /**
      * Name: push
      * adds an element to the stack, as the top
      * @param value object of type <T>
      */
     public void push(T value);
-   
+
     /**
      * Name: peek
      * gets the element at the top of the stack
@@ -32,11 +32,10 @@ public interface MyStackInterface<T> {
      * @return the element at the top
      */
     public T peek() throws MyStackException;
-    
+
     /**
      * Name: isEmpty
      * @return true if the stack is empty, false otherwise
      */
     public boolean isEmpty();
-    
 }

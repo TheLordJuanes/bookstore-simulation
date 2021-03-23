@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -36,18 +36,18 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
 
     /**
      * Name:getLength
-     * gets the length 
+     * gets the length
      * @return length
      */
     public int getLength() {
         return length;
     }
 
-    @SuppressWarnings("unchecked")
     /**
      * Name: toString
      * @return a String containing the elements in the stack, separated by spaces, from top to bottom
      */
+    @SuppressWarnings("unchecked")
     public String toString() {
         String info = "";
         MyStack<T> copy;
@@ -63,13 +63,13 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         return info;
     }
 
-    @Override
     /**
      * Name: pop
      * gets and removes the element at the top of the stack
      * @throws MyStackException if the stack is empty
      * @return the element at the top
      */
+    @Override
     public T pop() throws MyStackException {
         if (isEmpty())
             throw new MyStackException("The stack is empty.");
@@ -88,12 +88,12 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         }
     }
 
-    @Override
     /**
      * Name: push
      * adds an element to the stack, as the top
      * @param value object of type <T>
      */
+    @Override
     public void push(T value) {
         Node<T> newNode = new Node<T>(value);
         if (!isEmpty()) {
@@ -104,13 +104,13 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         length++;
     }
 
-    @Override
     /**
      * Name: peek
      * gets the element at the top of the stack
      * @throws MyStackException if the stack is empty
      * @return the element at the top
      */
+    @Override
     public T peek() throws MyStackException {
         if (isEmpty())
             throw new MyStackException("The stack is empty.");
@@ -118,21 +118,21 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
             return top.getValue();
     }
 
-    @Override
     /**
      * Name: isEmpty
      * @return true if the stack is empty, false otherwise
      */
+    @Override
     public boolean isEmpty() {
         return length == 0;
     }
 
-    @SuppressWarnings("unchecked")
     /**
      * Name: Clone
      * @return a copy of this object
-     * @throws CloneNotSupportedException to indicate that the clone method in class Object has been called to clone an object, but thatthe object's class does not implement the Cloneableinterface
+     * @throws CloneNotSupportedException to indicate that the clone method in class Object has been called to clone an object, but that the object's class does not implement the Cloneable interface
      */
+    @SuppressWarnings("unchecked")
     public MyStack<T> cloneThis() throws CloneNotSupportedException {
         return (MyStack<T>) this.clone();
     }

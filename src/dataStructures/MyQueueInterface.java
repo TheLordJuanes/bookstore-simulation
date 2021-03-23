@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -16,7 +16,7 @@ public interface MyQueueInterface<T> {
      * @param value the element to be stored
      */
 	public void enqueue(T value);
-   
+
 	/**
      * Name: isEmpty
      * @return true if the queue is empty, false otherwise
@@ -30,7 +30,7 @@ public interface MyQueueInterface<T> {
      * @return front
      */
     public T getFront() throws MyQueueException;
-    
+
     /**
      * Name: dequeue
      * retrieves the front and removes it from the queue

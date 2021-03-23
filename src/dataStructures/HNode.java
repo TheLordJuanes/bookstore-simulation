@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -76,7 +76,7 @@ public class HNode<K extends Number, V> {
 	/**
 	 * Name: setNext
 	 * sets the HNode that is next to the current HNode
-	 * @param next Hnode
+	 * @param next HNode
 	 */
 	public void setNext(HNode<K, V> next) {
 		this.next = next;
@@ -94,7 +94,7 @@ public class HNode<K extends Number, V> {
 	/**
 	 * Name: setPrev
 	 * sets the HNode that is previous to the current HNode
-	 * @param prev Hnode
+	 * @param prev HNode
 	 */
 	public void setPrev(HNode<K, V> prev) {
 		this.prev = prev;

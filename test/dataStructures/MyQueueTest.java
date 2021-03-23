@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -66,6 +66,17 @@ class MyQueueTest {
 			assertEquals(2, queue.getLength());
 			assertEquals("111", queue.getFront().getId());
 			assertEquals("333", queue.getBack().getValue().getId());
+			setup3();
+			assertFalse(queue.isEmpty());
+			assertEquals("111", queue.getFront().getId());
+			assertEquals("333", queue.getBack().getValue().getId());
+			assertEquals(2, queue.getLength());
+			Client client3 = new Client("555", 5);
+			queue.enqueue(client3);
+			assertFalse(queue.isEmpty());
+			assertEquals(3, queue.getLength());
+			assertEquals("111", queue.getFront().getId());
+			assertEquals("555", queue.getBack().getValue().getId());
 		} catch (MyQueueException mqe) {
 			fail("MyQueueException not expected");
 		}

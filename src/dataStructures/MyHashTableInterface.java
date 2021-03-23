@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -23,7 +23,7 @@ public interface MyHashTableInterface<K extends Number, V> {
 	 * @return if the key matches one of a value in the table, returns that object of type <V>, else returns null
 	 */
 	public V search(K key);
-	
+
 	/**
 	 * Name: delete
 	 * deletes a Node from the if the key matches
@@ -34,7 +34,7 @@ public interface MyHashTableInterface<K extends Number, V> {
 
 	/**
 	 * Name: isEmpty
-	 * @return true if there are no values stored in the table, false otherwise 
+	 * @return true if there are no values stored in the table, false otherwise
 	 */
 	public boolean isEmpty();
 

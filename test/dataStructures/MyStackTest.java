@@ -1,8 +1,8 @@
 /**
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
- * @Date: March, 21th 2021
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 package dataStructures;
 
@@ -50,6 +50,13 @@ class MyStackTest {
 			stack.push(book2);
 			assertEquals(2, stack.getLength());
 			assertEquals(111, stack.peek().getIsbn());
+			setup3();
+			assertFalse(stack.isEmpty());
+			assertEquals(111, stack.peek().getIsbn());
+			Book book3 = new Book(555, 8, 50000, "A");
+			stack.push(book3);
+			assertEquals(3, stack.getLength());
+			assertEquals(555, stack.peek().getIsbn());
 		} catch (MyStackException mse) {
 			fail("MyStackException not expected");
 		}

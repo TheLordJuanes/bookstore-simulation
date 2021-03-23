@@ -1,3 +1,9 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * @Authors: Juan Pablo Ramos, Juan Esteban Caicedo and Jose Alejandro García
+ * @Date: March, 23th 2021
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
 package model;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,7 +88,7 @@ public class BookstoreTest {
         setup1();
         try {
             String result = bs.giveResult('B');
-            BufferedReader br = new BufferedReader(new FileReader("resources/output.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("resources/output1.txt"));
             String[] parts = result.split("\n");
             for (int i = 0; i < parts.length; i++) {
                 String expected = br.readLine();
@@ -135,7 +141,7 @@ public class BookstoreTest {
     }
 
     @Test
-    public void testAppendBook() {
+    public void testAddBookToClient() {
         setup5();
         bs.addBookToClient("1111", 441);
         ArrayList<Client> clients = bs.getClients();
@@ -149,14 +155,18 @@ public class BookstoreTest {
     }
 
     @Test
-    public void testAddData() {
+    public void testAddCashiers() {
         setup2();
-        assertTrue(bs.areShelvesEmpty());
-        assertTrue(bs.getNumberOfShelves() == 0);
         assertTrue(bs.getNumberOfCashiers() == 0);
         bs.addCashiers(3);
+        assertTrue(bs.getNumberOfCashiers() == 3);
+    }
+
+    @Test
+    public void testCreateShelves() {
+        setup2();
+        assertTrue(bs.getNumberOfShelves() == 0);
         bs.createShelves(3);
         assertTrue(bs.getNumberOfShelves() == 3);
-        assertTrue(bs.getNumberOfCashiers() == 3);
     }
 }

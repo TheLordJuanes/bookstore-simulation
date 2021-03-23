@@ -50,7 +50,7 @@ public class Bookstore {
 
 	/**
 	 * addCashiers
-	 * creates the number of cashiers indicated 
+	 * creates the number of cashiers indicated
 	 * @param numberOfCashiers an int
 	 */
 	public void addCashiers(int numberOfCashiers) {
@@ -146,7 +146,7 @@ public class Bookstore {
 
 	/**
 	 * Name: checkBook
-	 * checks if a book already exists 
+	 * checks if a book already exists
 	 * @param isbn of the book to search
 	 * @return true if it already existed, false otherwise
 	 */
@@ -181,7 +181,7 @@ public class Bookstore {
 	 * Name: addClient
 	 * adds a client
 	 * @param id of the client to add
-	 * @return true if the client was added, false if it already existed
+	 * @return false if the client was added, true if it already existed
 	 */
 	public boolean addClient(String id) {
 		boolean exist = false;
@@ -257,7 +257,7 @@ public class Bookstore {
 	 * @param r an int
 	 * @return books, organized
 	 */
-	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
+	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) {
 		if (l < r) {
 			int m = l + (r - l) / 2;
 			mergeSort(books, l, m);
@@ -276,7 +276,7 @@ public class Bookstore {
 	 * @param r an int
 	 * @return arr, sorted
 	 */
-	private ArrayList<Book> merge(ArrayList<Book> arr, int l, int m, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
+	private ArrayList<Book> merge(ArrayList<Book> arr, int l, int m, int r) {
 		int n1 = m - l + 1;
 		int n2 = r - m;
 		ArrayList<Book> L = new ArrayList<Book>();
@@ -351,11 +351,11 @@ public class Bookstore {
 
 	/**
 	 * Name: heapSort
-	 * sorts books using heapsort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	 * sorts books using heap sort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 	 * @param books ArrayList of Book to be sorted
 	 * @return books, sorted
 	 */
-	private ArrayList<Book> heapSort(ArrayList<Book> books) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	private ArrayList<Book> heapSort(ArrayList<Book> books) {
 		int n = books.size();
 		for (int i = n / 2 - 1; i >= 0; i--)
 			heapify(books, n, i);
@@ -370,13 +370,13 @@ public class Bookstore {
 
 	/**
 	 * Name: heapify
-	 * auxiliary method of heapsort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	 * auxiliary method of heap sort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 	 * @param books ArrayList of Book
 	 * @param n an int
 	 * @param i an int
 	 * @return books, sorted
 	 */
-	private ArrayList<Book> heapify(ArrayList<Book> books, int n, int i) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	private ArrayList<Book> heapify(ArrayList<Book> books, int n, int i) {
 		int largest = i;
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
@@ -454,7 +454,7 @@ public class Bookstore {
 
 	/**
 	 * Name: getNumberOfClients
-	 * gets the number of clients 
+	 * gets the number of clients
 	 * @return an int
 	 */
 	public int getNumberOfClients() {
