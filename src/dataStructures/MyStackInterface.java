@@ -10,19 +10,33 @@ import exceptions.MyStackException;
 
 public interface MyStackInterface<T> {
 
+	/**
+     * Name: pop
+     * gets and removes the element at the top of the stack
+     * @throws MyStackException if the stack is empty
+     * @return the element at the top
+     */
     public T pop() throws MyStackException;
-    // Pre: none.
-    // Post: If stack is not empty, the item on the top is removed from the stack. Throws StackException if the stack is empty.
-
+    
+    /**
+     * Name: push
+     * adds an element to the stack, as the top
+     * @param value object of type <T>
+     */
     public void push(T value);
-    // Pre: new item to be added.
-    // Post: If insertion is successful, item is on the top of the stack. Throws StackException if the insertion is not successful.
-
+   
+    /**
+     * Name: peek
+     * gets the element at the top of the stack
+     * @throws MyStackException if the stack is empty
+     * @return the element at the top
+     */
     public T peek() throws MyStackException;
-    // Pre: none.
-    // Post: If stack is not empty, the item on the top is returned. The stack is left unchanged. Throws StackException if the stack is empty.
-
+    
+    /**
+     * Name: isEmpty
+     * @return true if the stack is empty, false otherwise
+     */
     public boolean isEmpty();
-    // Pre: none.
-    // Post: Returns true if the stack is empty, otherwise returns false.
+    
 }

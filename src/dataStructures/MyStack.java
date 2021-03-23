@@ -34,11 +34,20 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
         length = 0;
     }
 
+    /**
+     * Name:getLength
+     * gets the length 
+     * @return length
+     */
     public int getLength() {
         return length;
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * Name: toString
+     * @return a String containing the elements in the stack, separated by spaces, from top to bottom
+     */
     public String toString() {
         String info = "";
         MyStack<T> copy;
@@ -55,6 +64,12 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @Override
+    /**
+     * Name: pop
+     * gets and removes the element at the top of the stack
+     * @throws MyStackException if the stack is empty
+     * @return the element at the top
+     */
     public T pop() throws MyStackException {
         if (isEmpty())
             throw new MyStackException("The stack is empty.");
@@ -74,6 +89,11 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @Override
+    /**
+     * Name: push
+     * adds an element to the stack, as the top
+     * @param value object of type <T>
+     */
     public void push(T value) {
         Node<T> newNode = new Node<T>(value);
         if (!isEmpty()) {
@@ -85,6 +105,12 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @Override
+    /**
+     * Name: peek
+     * gets the element at the top of the stack
+     * @throws MyStackException if the stack is empty
+     * @return the element at the top
+     */
     public T peek() throws MyStackException {
         if (isEmpty())
             throw new MyStackException("The stack is empty.");
@@ -93,11 +119,20 @@ public class MyStack<T> implements MyStackInterface<T>, Cloneable {
     }
 
     @Override
+    /**
+     * Name: isEmpty
+     * @return true if the stack is empty, false otherwise
+     */
     public boolean isEmpty() {
         return length == 0;
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * Name: Clone
+     * @return a copy of this object
+     * @throws CloneNotSupportedException to indicate that the clone method in class Object has been called to clone an object, but thatthe object's class does not implement the Cloneableinterface
+     */
     public MyStack<T> cloneThis() throws CloneNotSupportedException {
         return (MyStack<T>) this.clone();
     }

@@ -39,20 +39,42 @@ public class Bookstore {
 		cashiers = new Cashier[0];
 	}
 
+	/**
+	 * Name: getClients
+	 * gets the clients
+	 * @return clients
+	 */
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
 
+	/**
+	 * addCashiers
+	 * creates the number of cashiers indicated 
+	 * @param numberOfCashiers an int
+	 */
 	public void addCashiers(int numberOfCashiers) {
 		cashiers = new Cashier[numberOfCashiers];
 		for (int i = 0; i < numberOfCashiers; i++)
 			cashiers[i] = new Cashier();
 	}
 
+	/**
+	 * Name: getNumberOfCashiers
+	 * gets the number of cashiers
+	 * @return an int
+	 */
 	public int getNumberOfCashiers() {
 		return cashiers.length;
 	}
 
+	/**
+	 * Name: addBookToClient
+	 * if the book exists, it is added to the clients ISBNList
+	 * @param id the id of the client
+	 * @param isbn the isbn of the book
+	 * @return true if added successfully, false otherwise
+	 */
 	public boolean addBookToClient(String id, int isbn) {
 		boolean found = false;
 		if (checkBook(isbn)) {
@@ -66,6 +88,10 @@ public class Bookstore {
 		return found;
 	}
 
+	/**
+	 * Name: areShelvesEmpty
+	 * @return true if the shelves are empty, false otherwise
+	 */
 	public boolean areShelvesEmpty() {
 		boolean result = true;
 		for (int i = 0; i < shelves.size(); i++) {
@@ -75,6 +101,14 @@ public class Bookstore {
 		return result;
 	}
 
+	/**
+	 * Name: addBook if the book does not already exist, it is added to the bookshelf indicated
+	 * @param bIsbn the isbn of the book
+	 * @param numberOfCopies the number of copies of the book
+	 * @param bookShelf the identifier of the shelf
+	 * @param bookPrice the price of the book
+	 * @return true if the book was not added (already existed), false otherwise
+	 */
 	public boolean addBook(int bIsbn, int numberOfCopies, String bookShelf, double bookPrice) {
 		Book newBook = new Book(bIsbn, numberOfCopies, bookPrice, bookShelf);
 		boolean alreadyExist = checkBook(bIsbn);
@@ -88,6 +122,14 @@ public class Bookstore {
 		return alreadyExist;
 	}
 
+	/**
+	 * Name: addBook if the book does not already exist, it is added to the bookshelf indicated
+	 * @param bIsbn the isbn of the book
+	 * @param numberOfCopies the number of copies of the book
+	 * @param bookShelfPosition the index of the shelf in shelves
+	 * @param bookPrice the price of the book
+	 * @return true if the book was not added (already existed), false otherwise
+	 */
 	public boolean addBook(int bIsbn, int numberOfCopies, int bookShelfPosition, double bookPrice) {
 		String bookShelf = shelves.get(bookShelfPosition).getIdentifier();
 		Book newBook = new Book(bIsbn, numberOfCopies, bookPrice, bookShelf);
@@ -102,6 +144,12 @@ public class Bookstore {
 		return alreadyExist;
 	}
 
+	/**
+	 * Name: checkBook
+	 * checks if a book already exists 
+	 * @param isbn of the book to search
+	 * @return true if it already existed, false otherwise
+	 */
 	private boolean checkBook(int isbn) {
 		boolean found = false;
 		for (int i = 0; i < shelves.size() && !found; i++) {
@@ -111,6 +159,12 @@ public class Bookstore {
 		return found;
 	}
 
+	/**
+	 * Name: searchBook
+	 * searches for a book in all the shelves
+	 * @param isbn of the book to search
+	 * @return The book if it exists, null otherwise
+	 */
 	public Book searchBook(int isbn) {
 		boolean found = false;
 		Book searchedBook = null;
@@ -123,6 +177,12 @@ public class Bookstore {
 		return searchedBook;
 	}
 
+	/**
+	 * Name: addClient
+	 * adds a client
+	 * @param id of the client to add
+	 * @return true if the client was added, false if it already existed
+	 */
 	public boolean addClient(String id) {
 		boolean exist = false;
 		for (int i = 0; i < clients.size() && !exist; i++) {
@@ -136,6 +196,12 @@ public class Bookstore {
 		return exist;
 	}
 
+	/**
+	 * Name: createListBooks
+	 * creates a list of Book by searching the books by their isbn
+	 * @param isbnList a list of the isbns of the books to be searched
+	 * @return an ArrayList of Book
+	 */
 	private ArrayList<Book> createListBooks(ArrayList<Integer> isbnList) {
 		ArrayList<Book> books = new ArrayList<Book>();
 		for (int i = 0; i < isbnList.size(); i++) {
@@ -146,6 +212,12 @@ public class Bookstore {
 		return books;
 	}
 
+	/**
+	 * Name: orderClientsBooks
+	 * orders the client's list of Books by their shelf and their isbn
+	 * @param sortingAlgorithm a char representing the sorting algorithm to be used (B, H or M)
+	 * @param currentClient the client whose books are to be organized
+	 */
 	public void orderClientsBooks(char sortingAlgorithm, Client currentClient) {
 		ArrayList<Book> result;
 		ArrayList<Book> books = createListBooks(currentClient.getISBNList());
@@ -164,6 +236,12 @@ public class Bookstore {
 		currentClient.setISBNList(isbns);
 	}
 
+	/**
+	 * Name: booksToISBN
+	 * creates a list of the ISBNs of the books given
+	 * @param books a List of Book
+	 * @return ArrayList of Integer
+	 */
 	private ArrayList<Integer> booksToISBN(List<Book> books) {
 		ArrayList<Integer> isbns = new ArrayList<>();
 		for (int i = 0; i < books.size(); i++)
@@ -171,6 +249,14 @@ public class Bookstore {
 		return isbns;
 	}
 
+	/**
+	 * Name: mergeSort
+	 * sorts the books using mergeSort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
+	 * @param books the ArrayList of Book to be sorted
+	 * @param l an int
+	 * @param r an int
+	 * @return books, organized
+	 */
 	private ArrayList<Book> mergeSort(ArrayList<Book> books, int l, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
 		if (l < r) {
 			int m = l + (r - l) / 2;
@@ -181,6 +267,15 @@ public class Bookstore {
 		return books;
 	}
 
+	/**
+	 * Name: merge
+	 * auxiliary method of merge sort // method adapted from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
+	 * @param arr the ArrayList of Book to be sorted
+	 * @param l an int
+	 * @param m an int
+	 * @param r an int
+	 * @return arr, sorted
+	 */
 	private ArrayList<Book> merge(ArrayList<Book> arr, int l, int m, int r) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/merge-sort/
 		int n1 = m - l + 1;
 		int n2 = r - m;
@@ -226,6 +321,12 @@ public class Bookstore {
 		return arr;
 	}
 
+	/**
+	 * Name: bubbleSort
+	 * sorts books by using bubbleSort
+	 * @param books the ArrayList of Book to be sorted
+	 * @return books, sorted
+	 */
 	private ArrayList<Book> bubbleSort(ArrayList<Book> books) {
 		Book aux;
 		for (int i = 0; i < books.size() - 1; i++) {
@@ -248,6 +349,12 @@ public class Bookstore {
 		return books;
 	}
 
+	/**
+	 * Name: heapSort
+	 * sorts books using heapsort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	 * @param books ArrayList of Book to be sorted
+	 * @return books, sorted
+	 */
 	private ArrayList<Book> heapSort(ArrayList<Book> books) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 		int n = books.size();
 		for (int i = n / 2 - 1; i >= 0; i--)
@@ -261,6 +368,14 @@ public class Bookstore {
 		return books;
 	}
 
+	/**
+	 * Name: heapify
+	 * auxiliary method of heapsort, method adapted from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
+	 * @param books ArrayList of Book
+	 * @param n an int
+	 * @param i an int
+	 * @return books, sorted
+	 */
 	private ArrayList<Book> heapify(ArrayList<Book> books, int n, int i) { // method taken from GeeksForGeeks https://www.geeksforgeeks.org/heap-sort/
 		int largest = i;
 		int l = 2 * i + 1;
@@ -290,6 +405,11 @@ public class Bookstore {
 		return books;
 	}
 
+	/**
+	 * Name: createShelves
+	 * creates the number of shelves given, assigns an identifier (uppercase letter) alphabetically, A through Z, AA after Z and so on
+	 * @param numberOfS an int
+	 */
 	public void createShelves(int numberOfS) {
 		int nPrevLetter = 0;
 		int index = 90;
@@ -311,10 +431,20 @@ public class Bookstore {
 		}
 	}
 
+	/**
+	 * Name: getNumberOfShelves
+	 * gets the number of shelves
+	 * @return an int
+	 */
 	public int getNumberOfShelves() {
 		return shelves.size();
 	}
 
+	/**
+	 * Name: getIdentifiers
+	 * gets the identifiers of the shelves created
+	 * @return a String[] containing the Identifiers of the shelves
+	 */
 	public String[] getIdentifiers() {
 		String identifiers[] = new String[shelves.size()];
 		for (int i = 0; i < shelves.size(); i++)
@@ -322,10 +452,20 @@ public class Bookstore {
 		return identifiers;
 	}
 
+	/**
+	 * Name: getNumberOfClients
+	 * gets the number of clients 
+	 * @return an int
+	 */
 	public int getNumberOfClients() {
 		return clients.size();
 	}
 
+	/**
+	 * Name: getIds
+	 * gets the IDs of the clients
+	 * @return a String[] containing the IDs of the clients
+	 */
 	public String[] getIds() {
 		String ids[] = new String[clients.size()];
 		for (int i = 0; i < clients.size(); i++)
@@ -333,6 +473,14 @@ public class Bookstore {
 		return ids;
 	}
 
+	/**
+	 * Name: giveResult
+	 * simulates the different sections of the bookstore and returns the information of the results of each section in a String
+	 * @param typeOfSort the type of sort to be used to organize the clients' books
+	 * @return a String containing the results of each section
+	 * @throws MyQueueException if an instance of MyQueue was empty during the procedure and an attempt was made to get elements from it
+	 * @throws MyStackException if an instance of MyStack was empty during the procedure and an attempt was made to get elements from it
+	 */
 	public String giveResult(char typeOfSort) throws MyQueueException, MyStackException {
 		String info = "";
 		ArrayList<Client> clientsDeparture = new ArrayList<>();
@@ -353,6 +501,11 @@ public class Bookstore {
 		return info;
 	}
 
+	/**
+	 * Name: simulateFirstSection
+	 * simulates the first section
+	 * @return a String containing the clients and their lists of books, unorganized
+	 */
 	public String simulateFirstSection() {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
@@ -363,6 +516,12 @@ public class Bookstore {
 		return info;
 	}
 
+	/**
+	 * Name: simulateSecondSection
+	 * simulates the second section of the Bookstore
+	 * @param orderBy the method to be used to sort the clients' list of books (B, H or M)
+	 * @return a String containing the clients and their lists of books, organized
+	 */
 	public String simulateSecondSection(char orderBy) {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
@@ -374,6 +533,11 @@ public class Bookstore {
 		return info;
 	}
 
+	/**
+	 * Name: simulateThirdSection
+	 * simulates the third section
+	 * @return a String containing what the clients have in their baskets
+	 */
 	public String simulateThirdSection() {
 		String info = "";
 		for (int i = 0; i < clients.size(); i++) {
@@ -406,6 +570,13 @@ public class Bookstore {
 		return info;
 	}
 
+	/**
+	 * Name: simulateFourthSection
+	 * simulates the fourth section
+	 * @param clientsDeparture an ArrayList of Client where the clients who are done will be stored
+	 * @throws MyQueueException if an instance of MyQueue was empty during the procedure and an attempt was made to get elements from it
+	 * @throws MyStackException if an instance of MyStack was empty during the procedure and an attempt was made to get elements from it
+	 */
 	public void simulateFourthSection(ArrayList<Client> clientsDeparture) throws MyQueueException, MyStackException {
 		MyQueue<Client> line = new MyQueue<>(clients);
 		boolean stop = false;

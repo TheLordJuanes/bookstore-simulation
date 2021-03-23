@@ -8,17 +8,34 @@ package dataStructures;
 
 public interface MyHashTableInterface<K extends Number, V> {
 
+	/**
+	 * Name: insert
+	 * inserts the Object value in the hashtable with the reference key, if two keys hash to the same slot on the table, adds as nextNode of the last node in that slot
+	 * @param key an object of type <K> to be used as key to reference the value within the table
+	 * @param value an object of type <V> to be stored in within the table
+	 */
 	public void insert(K key, V value);
-	// Pre: new item to be added.
-	// Post: Inserts an item into a table in its proper sorted order according to the item's search key.
 
+	/**
+	 * Name: search
+	 * searches for a value with a matching key
+	 * @param key an object of type <K>
+	 * @return if the key matches one of a value in the table, returns that object of type <V>, else returns null
+	 */
 	public V search(K key);
-	// Post: Retrieves an item with a given search key from a table.
-
+	
+	/**
+	 * Name: delete
+	 * deletes a Node from the if the key matches
+	 * @param key an object of type <K>
+	 * @return true if the object was successfully removed, false otherwise
+	 */
 	public boolean delete(K key);
-	// Post: Deletes an item with a given search key from the table.
 
+	/**
+	 * Name: isEmpty
+	 * @return true if there are no values stored in the table, false otherwise 
+	 */
 	public boolean isEmpty();
-	// Pre: none.
-	// Post: Returns true if the table is empty, otherwise returns false.
+
 }

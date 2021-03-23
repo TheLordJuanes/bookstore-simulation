@@ -10,19 +10,32 @@ import exceptions.MyQueueException;
 
 public interface MyQueueInterface<T> {
 
-    public void enqueue(T value);
-    // Pre: new item to be added.
-    // Post: If insertion is successful, item is at the end of the queue. Throws QueueException if the item cannot be added to the queue.
-
+	/**
+     * Name: enqueue
+     * adds a new element to the queue
+     * @param value the element to be stored
+     */
+	public void enqueue(T value);
+   
+	/**
+     * Name: isEmpty
+     * @return true if the queue is empty, false otherwise
+     */
     public boolean isEmpty();
-    // Pre: none.
-    // Post: Returns true if the queue is empty, otherwise returns false.
 
+    /**
+     * Name: getFront
+     * gets the front
+     * @throws MyQueueException if the queue is empty
+     * @return front
+     */
     public T getFront() throws MyQueueException;
-    // Pre: none.
-    // Post: If queue is not empty, the item at the front of a queue is returned, and the queue is left unchanged. Throws QueueException if the queue is empty.
-
+    
+    /**
+     * Name: dequeue
+     * retrieves the front and removes it from the queue
+     * @throws MyQueueException if the queue is empty
+     * @return front
+     */
     public T dequeue() throws MyQueueException;
-    // Pre: none.
-    // Post: If queue is not empty, the item at the front of the queue is retrieved and removed from the queue. Throws QueueException if the queue is empty.
 }

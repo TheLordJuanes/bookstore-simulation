@@ -110,6 +110,7 @@ class MyStackTest {
 			Book b = stack.peek();
 			assertNotNull(b);
 			assertEquals(1, stack.getLength());
+			assertEquals(333, b.getIsbn());
 			assertFalse(stack.isEmpty());
 		} catch (MyStackException mse) {
 			fail("MyStackException not expected");

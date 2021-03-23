@@ -35,42 +35,90 @@ public class Book {
 		this.price = price;
 	}
 
+	/**
+	 * Name: Decrease copies
+	 * Decreases the attribute copies of the book
+	 */
 	public void decreaseCopies() {
 		copies--;
 	}
 
+	/**
+	 * Name: getIsbn
+	 * Gets the isbn
+	 * @return isbn
+	 */
 	public int getIsbn() {
 		return isbn;
 	}
 
+	/**
+	 * Name: setIsbn
+	 * sets the isbn
+	 * @param isbn an int
+	 */
 	public void setIsbn(int isbn) {
 		this.isbn = isbn;
 	}
 
+	/**
+	 * Name:  getShelf
+	 * gets the shelf
+	 * @return shelf
+	 */
 	public String getShelf() {
 		return shelf;
 	}
 
+	/**
+	 * Name: setShelf
+	 * sets the shelf
+	 * @param shelf a String containing the identifier of the shelf
+	 */
 	public void setShelf(String shelf) {
 		this.shelf = shelf;
 	}
 
+	/**
+	 * Name: getCopies
+	 * gets the number of copies
+	 * @return copies
+	 */
 	public int getCopies() {
 		return copies;
 	}
 
+	/**
+	 * Name: setCopies
+	 * sets copies
+	 * @param copies an int
+	 */
 	public void setCopies(int copies) {
 		this.copies = copies;
 	}
 
+	/**
+	 * Name: getPrice
+	 * gets the price
+	 * @return price
+	 */
 	public double getPrice() {
 		return price;
 	}
 
+	/**
+	 * Name: setPrice
+	 * sets the price
+	 * @param price an int
+	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	/**
+	 * Name: toString
+	 * returns a string containing the isbn of the book
+	 */
 	public String toString() {
 		return String.valueOf(isbn);
 	}

@@ -34,26 +34,56 @@ public class Node<T> {
 		this.value = value;
 	}
 
+	/**
+	 * Name:getNextNode
+	 * gets the next node 
+	 * @return nextNode
+	 */
 	public Node<T> getNextNode() {
 		return nextNode;
 	}
 
+	/**
+	 * Name: setNextNode
+	 * sets the next node
+	 * @param nextNode a Node<T>
+	 */
 	public void setNextNode(Node<T> nextNode) {
 		this.nextNode = nextNode;
 	}
 
+	/**
+	 * Name: getPrevNode
+	 * gets the previous node
+	 * @return prevNode
+	 */
 	public Node<T> getPrevNode() {
 		return prevNode;
 	}
 
+	/**
+	 * Name: setPrevNode
+	 * sets the previous node
+	 * @param prevNode a Node<T>
+	 */
 	public void setPrevNode(Node<T> prevNode) {
 		this.prevNode = prevNode;
 	}
 
+	/**
+	 * Name: getValue
+	 * gets the value
+	 * @return value
+	 */
 	public T getValue() {
 		return value;
 	}
 
+	/**
+	 * Name: setValue
+	 * sets the value
+	 * @param value an object of type <T>
+	 */
 	public void setValue(T value) {
 		this.value = value;
 	}

@@ -58,6 +58,7 @@ class MyQueueTest {
 			setup2();
 			assertFalse(queue.isEmpty());
 			assertEquals("111", queue.getFront().getId());
+			assertEquals("111", queue.getBack().getValue().getId());
 			assertEquals(1, queue.getLength());
 			Client client2 = new Client("333", 4);
 			queue.enqueue(client2);

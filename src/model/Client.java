@@ -45,18 +45,38 @@ public class Client {
 		bag = new MyStack<Book>();
 	}
 
+	/**
+	 * Name: getId
+	 * gets the id
+	 * @return id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Name: getTime
+	 * gets the time
+	 * @return time
+	 */
 	public int getTime() {
 		return time;
 	}
 
+	/**
+	 * Name: setTime
+	 * sets the time
+	 * @param time an int
+	 */
 	public void setTime(int time) {
 		this.time = time;
 	}
 
+	/**
+	 * Name: getBokList
+	 * returns a String containing the isbns if the books int the ISBNList, separated by \n
+	 * @return a String
+	 */
 	public String getBookList() {
 		String list = "";
 		for (int i = 0; i < ISBNList.size(); i++)
@@ -64,26 +84,56 @@ public class Client {
 		return list;
 	}
 
+	/**
+	 * Name: getISBNList
+	 * gets the ISBNList
+	 * @return ISBNList
+	 */
 	public ArrayList<Integer> getISBNList() {
 		return ISBNList;
 	}
 
+	/**
+	 * Name: setISBNList
+	 * sets the ISBNList
+	 * @param iSBNList an ArrayList of Integer
+	 */
 	public void setISBNList(ArrayList<Integer> iSBNList) {
 		ISBNList = iSBNList;
 	}
 
+	/**
+	 * Name: getBasket
+	 * gets the basket
+	 * @return basket
+	 */
 	public MyStack<Book> getBasket() {
 		return basket;
 	}
 
+	/**
+	 * Name: setBasket
+	 * sets the basket
+	 * @param basket a MyStack of Book
+	 */
 	public void setBasket(MyStack<Book> basket) {
 		this.basket = basket;
 	}
 
+	/**
+	 * Name: getBag
+	 * gets the bag
+	 * @return bag
+	 */
 	public MyStack<Book> getBag() {
 		return bag;
 	}
 
+	/**
+	 * Name: setBag
+	 * sets the bag
+	 * @param bag a MyStack of Book
+	 */
 	public void setBag(MyStack<Book> bag) {
 		this.bag = bag;
 	}
